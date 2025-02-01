@@ -1,2 +1,2 @@
-# collect_your_wheels
+# Collect you wheels
 An app for track your hotwheels collection.
