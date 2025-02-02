@@ -19,6 +19,11 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(', ')
 
 
 # Application definition
+MY_APPS = [
+    'cyw_backend.cars',
+    'cyw_backend.series.apps.SeriesConfig',
+    'cyw_backend.accounts.apps.AccountsConfig',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,10 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'cyw_backend.cars',
-    'cyw_backend.series.apps.SeriesConfig',
-    'cyw_backend.accounts.apps.AccountsConfig',
-]
+] + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
