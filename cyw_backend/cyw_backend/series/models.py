@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -15,15 +16,21 @@ class Series(models.Model):
 
     year = models.IntegerField(
         verbose_name='Year',
+        validators=[MinValueValidator(1968), MaxValueValidator(2100)],
     )
 
     number_of_cars = models.IntegerField(
         verbose_name='Number of cars',
     )
 
-    imageURL = models.URLField(
+    image_url = models.URLField(
+        verbose_name='Image URL',
         null=True,
         blank=True,
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
     )
 
     def __str__(self):
