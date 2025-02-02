@@ -8,11 +8,22 @@ class Series(models.Model):
     )
 
     description = models.TextField(
+        null=True,
+        blank=True,
         verbose_name='Description',
     )
 
     year = models.IntegerField(
         verbose_name='Year',
+    )
+
+    number_of_cars = models.IntegerField(
+        verbose_name='Number of cars',
+    )
+
+    imageURL = models.URLField(
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
