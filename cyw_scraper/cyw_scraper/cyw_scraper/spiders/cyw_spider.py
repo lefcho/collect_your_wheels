@@ -1,7 +1,7 @@
 import scrapy
 
 
-class HotWheelsSpider(scrapy.Spider):
+class WheelsSpider(scrapy.Spider):
     year = '2012'
 
     name = "cyw-scraper"
@@ -17,5 +17,5 @@ class HotWheelsSpider(scrapy.Spider):
             full_url = response.urljoin(path)
             yield {
                 'title': response.css("h1::text").get(),
-                "url": full_url,
+                'url': full_url,
             }
