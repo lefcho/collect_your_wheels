@@ -16,6 +16,5 @@ class WheelsSpider(scrapy.Spider):
             # Convert relative URL to absolute URL
             full_url = response.urljoin(path)
             yield {
-                'title': response.css("h1::text").get(),
                 'url': full_url,
             }
