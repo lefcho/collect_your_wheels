@@ -47,5 +47,6 @@ class WheelsSpider(scrapy.Spider):
                 "toy_number": toy_number.strip(),
                 "model": current_model.strip(),
                 "series_number": series_number.split("/")[0],
+                "is_super_treasure_hunt": False,
                 "image_url": image_url,
             }
