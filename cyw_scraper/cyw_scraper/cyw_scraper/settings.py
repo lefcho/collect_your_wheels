@@ -9,13 +9,14 @@
 
 import os
 import sys
-
-DJANGO_PROJECT_PATH = os.path.abspath("../../cyw_backend")
-sys.path.append(DJANGO_PROJECT_PATH)
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "cyw_backend.settings"
-
 import django
+
+# Update this path to the directory that contains your Django project folder (the one with manage.py)
+DJANGO_PROJECT_PATH = os.path.abspath("../../cyw_backend")
+sys.path.insert(0, DJANGO_PROJECT_PATH)
+
+# Set the Django settings module; it should be in the format "project_name.settings"
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cyw_backend.settings")
 django.setup()
 
 BOT_NAME = "cyw_scraper"
@@ -74,7 +75,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "cyw_scraper.pipelines.CywScraperPipeline": 300,
+   "cyw_scraper.pipelines.HotWheelsPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

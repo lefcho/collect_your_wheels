@@ -1,6 +1,5 @@
 import scrapy
-from cyw_scraper.cyw_scraper.items import CarItem
-
+from cyw_scraper.items import CarItem
 
 class WheelsSpider(scrapy.Spider):
     year = '2012'
@@ -40,7 +39,7 @@ class WheelsSpider(scrapy.Spider):
                 is_super_treasure_hunt = False
                 is_treasure_hunt = True
 
-            if not toy_number or not model:
+            if not toy_number or not model or not series_number:
                 continue
 
             current_model = model
@@ -58,7 +57,7 @@ class WheelsSpider(scrapy.Spider):
 
             car_item["series_title"] = series_title
             car_item["toy_number"] = toy_number
-            car_item["series_number"] = series_number
+            car_item["series_number"] = series_number.split("/")[0]
             car_item["model"] = current_model
             car_item["is_treasure_hunt"] = is_treasure_hunt
             car_item["is_super_treasure_hunt"] = is_super_treasure_hunt

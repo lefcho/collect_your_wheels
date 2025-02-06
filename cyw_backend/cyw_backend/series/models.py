@@ -20,6 +20,8 @@ class Series(models.Model):
     )
 
     number_of_cars = models.IntegerField(
+        null=True,
+        blank=True,
         verbose_name='Number of cars',
     )
 
