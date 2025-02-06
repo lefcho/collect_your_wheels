@@ -15,3 +15,4 @@ class CarItem(scrapy.Item):
     is_treasure_hunt = scrapy.Field()
     image_url = scrapy.Field()
     year = scrapy.Field()
+    max_car_number = scrapy.Field()

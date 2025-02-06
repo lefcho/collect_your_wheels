@@ -1,6 +1,13 @@
 import scrapy
 from cyw_scraper.items import CarItem
 
+
+FORBIDDEN_LINKS = {
+    '2012': ['https://hotwheels.fandom.com/wiki/Thrill_Racers_Series',
+             'https://hotwheels.fandom.com/wiki/Chinese_New_Year'],
+}
+
+
 class WheelsSpider(scrapy.Spider):
     year = '2012'
 
@@ -14,8 +21,9 @@ class WheelsSpider(scrapy.Spider):
         link_paths = response.css("span.mw-headline b a::attr(href)").getall()
         link_paths += response.css("span.mw-headline a::attr(href)").getall()
         for path in link_paths:
-            full_url = response.urljoin(path)
-            yield scrapy.Request(full_url, callback=self.parse_series_details)
+            if path not in FORBIDDEN_LINKS[self.year]:
+                full_url = response.urljoin(path)
+                yield scrapy.Request(full_url, callback=self.parse_series_details)
 
     def parse_series_details(self, response):
         series_title = response.css("#firstHeading span::text").get()
@@ -55,10 +63,11 @@ class WheelsSpider(scrapy.Spider):
 
             car_item = CarItem()
 
-            car_item["series_title"] = series_title
-            car_item["toy_number"] = toy_number
-            car_item["series_number"] = series_number.split("/")[0]
-            car_item["model"] = current_model
+            car_item["series_title"] = series_title.strip()
+            car_item["toy_number"] = toy_number.strip()
+            car_item["series_number"] = series_number.split("/")[0].strip()
+            car_item["max_car_number"] = series_number.split("/")[1].strip()
+            car_item["model"] = current_model.strip()
             car_item["is_treasure_hunt"] = is_treasure_hunt
             car_item["is_super_treasure_hunt"] = is_super_treasure_hunt
             car_item["image_url"] = image_url
