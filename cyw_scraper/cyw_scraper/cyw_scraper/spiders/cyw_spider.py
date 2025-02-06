@@ -28,14 +28,14 @@ class WheelsSpider(scrapy.Spider):
                 toy_number = row.css("td:nth-child(1)::text").get()
                 model = row.css("td:nth-child(3) a::text").get()
                 series_number = row.css("td:nth-child(5)::text").get()
-                image_urls = row.css("td:nth-child(6) a img::attr(src)").getall()
+                image_url = row.css("td:nth-child(6) a img::attr(src)").get()
                 is_super_treasure_hunt = (row.css("td:nth-child(4) b a::text").get() == "Super Treasure Hunt")
                 is_treasure_hunt = True
             else:
                 toy_number = row.css("td:nth-child(1)::text").get()
                 model = row.css("td:nth-child(4) a::text").get()
                 series_number = row.css("td:nth-child(3)::text").get()
-                image_urls = row.css("td:nth-child(12) a img::attr(src)").getall()
+                image_url = row.css("td:nth-child(12) a img::attr(src)").get()
                 is_super_treasure_hunt = False
                 is_treasure_hunt = True
 
@@ -50,9 +50,8 @@ class WheelsSpider(scrapy.Spider):
                 color_number = 1
             previous_model = model
 
-            image_urls = [url for url in image_urls if not url.startswith("data:")]
-            if not image_urls:
-                image_urls = None
+            if image_url and image_url.startswith("data:"):
+                image_url = None
 
             yield {
                 "series_title": series_title,
@@ -61,5 +60,5 @@ class WheelsSpider(scrapy.Spider):
                 "series_number": series_number.split("/")[0],
                 "is_super_treasure_hunt": is_super_treasure_hunt,
                 "is_treasure_hunt": is_treasure_hunt,
-                "image_urls": image_urls,
+                "image_url": image_url,
             }
