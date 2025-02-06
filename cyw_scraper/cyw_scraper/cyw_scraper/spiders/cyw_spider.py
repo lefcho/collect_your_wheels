@@ -1,4 +1,5 @@
 import scrapy
+from cyw_scraper.cyw_scraper.items import CarItem
 
 
 class WheelsSpider(scrapy.Spider):
@@ -53,12 +54,15 @@ class WheelsSpider(scrapy.Spider):
             if image_url and image_url.startswith("data:"):
                 image_url = None
 
-            yield {
-                "series_title": series_title,
-                "toy_number": toy_number.strip(),
-                "model": current_model.strip(),
-                "series_number": series_number.split("/")[0],
-                "is_super_treasure_hunt": is_super_treasure_hunt,
-                "is_treasure_hunt": is_treasure_hunt,
-                "image_url": image_url,
-            }
+            car_item = CarItem()
+
+            car_item["series_title"] = series_title
+            car_item["toy_number"] = toy_number
+            car_item["series_number"] = series_number
+            car_item["model"] = current_model
+            car_item["is_treasure_hunt"] = is_treasure_hunt
+            car_item["is_super_treasure_hunt"] = is_super_treasure_hunt
+            car_item["image_url"] = image_url
+            car_item["year"] = int(self.year)
+
+            yield car_item

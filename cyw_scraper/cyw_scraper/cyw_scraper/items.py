@@ -6,7 +6,12 @@
 import scrapy
 
 
-class CywScraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class CarItem(scrapy.Item):
+    series_title = scrapy.Field()
+    toy_number = scrapy.Field()
+    model = scrapy.Field()
+    series_number = scrapy.Field()
+    is_super_treasure_hunt = scrapy.Field()
+    is_treasure_hunt = scrapy.Field()
+    image_url = scrapy.Field()
+    year = scrapy.Field()

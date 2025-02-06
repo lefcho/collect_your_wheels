@@ -7,6 +7,17 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
+import sys
+
+DJANGO_PROJECT_PATH = os.path.abspath("../../cyw_backend")
+sys.path.append(DJANGO_PROJECT_PATH)
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "cyw_backend.settings"
+
+import django
+django.setup()
+
 BOT_NAME = "cyw_scraper"
 
 SPIDER_MODULES = ["cyw_scraper.spiders"]
@@ -62,9 +73,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "cyw_scraper.pipelines.CywScraperPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "cyw_scraper.pipelines.CywScraperPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
