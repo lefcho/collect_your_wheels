@@ -12,6 +12,7 @@ class WheelsSpider(scrapy.Spider):
     def parse(self, response):
         # Collect all links under <span class="mw-headline"> then <b> then <a>
         link_paths = response.css("span.mw-headline b a::attr(href)").getall()
+        link_paths += response.css("span.mw-headline a::attr(href)").getall()
         for path in link_paths:
             full_url = response.urljoin(path)
             yield scrapy.Request(full_url, callback=self.parse_series_details)
@@ -23,10 +24,20 @@ class WheelsSpider(scrapy.Spider):
         previous_model = ''
 
         for row in rows:
-            toy_number = row.css("td:nth-child(1)::text").get()
-            model = row.css("td:nth-child(3) a::text").get()
-            series_number = row.css("td:nth-child(5)::text").get()
-            image_url = row.css("td:nth-child(6) a img::attr(src)").get()
+            if "Treasure Hunts Series" not in series_title:
+                toy_number = row.css("td:nth-child(1)::text").get()
+                model = row.css("td:nth-child(3) a::text").get()
+                series_number = row.css("td:nth-child(5)::text").get()
+                image_urls = row.css("td:nth-child(6) a img::attr(src)").getall()
+                is_super_treasure_hunt = (row.css("td:nth-child(4) b a::text").get() == "Super Treasure Hunt")
+                is_treasure_hunt = True
+            else:
+                toy_number = row.css("td:nth-child(1)::text").get()
+                model = row.css("td:nth-child(4) a::text").get()
+                series_number = row.css("td:nth-child(3)::text").get()
+                image_urls = row.css("td:nth-child(12) a img::attr(src)").getall()
+                is_super_treasure_hunt = False
+                is_treasure_hunt = True
 
             if not toy_number or not model:
                 continue
@@ -39,14 +50,16 @@ class WheelsSpider(scrapy.Spider):
                 color_number = 1
             previous_model = model
 
-            if image_url and image_url.startswith("data:"):
-                image_url = None
+            image_urls = [url for url in image_urls if not url.startswith("data:")]
+            if not image_urls:
+                image_urls = None
 
             yield {
                 "series_title": series_title,
                 "toy_number": toy_number.strip(),
                 "model": current_model.strip(),
                 "series_number": series_number.split("/")[0],
-                "is_super_treasure_hunt": False,
-                "image_url": image_url,
+                "is_super_treasure_hunt": is_super_treasure_hunt,
+                "is_treasure_hunt": is_treasure_hunt,
+                "image_urls": image_urls,
             }
