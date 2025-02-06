@@ -38,7 +38,7 @@ class WheelsSpider(scrapy.Spider):
                 series_number = row.css("td:nth-child(5)::text").get()
                 image_url = row.css("td:nth-child(6) a img::attr(src)").get()
                 is_super_treasure_hunt = (row.css("td:nth-child(4) b a::text").get() == "Super Treasure Hunt")
-                is_treasure_hunt = True
+                is_treasure_hunt = False
             else:
                 toy_number = row.css("td:nth-child(1)::text").get()
                 model = row.css("td:nth-child(4) a::text").get()
