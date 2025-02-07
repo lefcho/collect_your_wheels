@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from cyw_backend.cars.models import Car
+from cyw_backend.cars.serializers import CarSerializer
 
-# Create your views here.
+
+class CarViewSet(ModelViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer

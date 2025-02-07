@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from cyw_backend.series.models import Series
+from cyw_backend.series.serializers import SeriesSerializer
 
-# Create your views here.
+
+class SeriesViewSet(ModelViewSet):
+    queryset = Series.objects.all()
+    serializer_class = SeriesSerializer
