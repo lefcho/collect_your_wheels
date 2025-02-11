@@ -1,8 +1,13 @@
-from rest_framework.viewsets import ModelViewSet
-from cyw_backend.cars.models import Car
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from cyw_backend.cars.serializers import CarSerializer
 
 
-class CarViewSet(ModelViewSet):
-    queryset = Car.objects.all()
+class UserCollectedCarsListView(generics.ListAPIView):
     serializer_class = CarSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        collected_cars = user.collected_cars.all()
+        return collected_cars
