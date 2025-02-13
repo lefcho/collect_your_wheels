@@ -19,8 +19,6 @@ class WheelsSpider(scrapy.Spider):
             rows = table.css("tr")
             series_number = 0
             all_car_models = set(table.css("td:nth-child(3) a::text").getall())
-            print(f'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n{all_car_models}\n'
-                  f'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n')
 
             for row in rows:
                 toy_number = row.css("td:nth-child(1)::text").get()
