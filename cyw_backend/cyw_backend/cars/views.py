@@ -1,5 +1,5 @@
-from rest_framework import generics, status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics, status, filters
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -93,3 +93,36 @@ class WishlistedCarsCreateDestroyView(APIView):
             {"status": "Car no longer wishlisted."},
             status=status.HTTP_200_OK,
         )
+
+
+class SearchCarsListView(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = CarSerializer
+    queryset = Car.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['toy_number', 'model', 'series__title',]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

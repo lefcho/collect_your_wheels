@@ -8,4 +8,7 @@ urlpatterns = [
 
     path('wishlisted-cars/', views.WishlistedCarsListView.as_view(), name='wishlisted-cars'),
     path('wishlisted-cars/<int:car_id>/', views.WishlistedCarsCreateDestroyView.as_view(), name='mark-wishlisted'),
+
+    path('search-cars/', views.SearchCarsListView.as_view(), name='search-cars'),
+
 ]
