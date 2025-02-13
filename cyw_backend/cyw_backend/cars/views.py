@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, filters
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -99,9 +100,12 @@ class SearchCarsListView(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = CarSerializer
     queryset = Car.objects.all()
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
     search_fields = ['toy_number', 'model', 'series__title',]
-
+    filterset_fields = ['series__title',]
 
 
 

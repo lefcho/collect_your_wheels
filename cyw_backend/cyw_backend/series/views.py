@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters
 from rest_framework.permissions import AllowAny
 
@@ -9,5 +10,9 @@ class SearchSeriesListView(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = SeriesSerializer
     queryset = Series.objects.all()
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
     search_fields = ['title', 'year',]
+    filterset_fields = ['year',]
