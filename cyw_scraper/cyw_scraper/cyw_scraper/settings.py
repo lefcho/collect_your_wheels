@@ -7,18 +7,6 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-import os
-import sys
-import django
-
-# Update this path to the directory that contains your Django project folder (the one with manage.py)
-DJANGO_PROJECT_PATH = os.path.abspath("../../cyw_backend")
-sys.path.insert(0, DJANGO_PROJECT_PATH)
-
-# Set the Django settings module; it should be in the format "project_name.settings"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cyw_backend.settings")
-django.setup()
-
 BOT_NAME = "cyw_scraper"
 
 SPIDER_MODULES = ["cyw_scraper.spiders"]
