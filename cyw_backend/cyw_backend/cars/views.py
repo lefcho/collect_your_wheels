@@ -11,6 +11,10 @@ from cyw_backend.cars.serializers import CarSerializer
 class CollectedCarsListView(generics.ListAPIView):
     serializer_class = CarSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [
+        filters.SearchFilter,
+    ]
+    search_fields = ['toy_number', 'model', 'series__title',]
 
     def get_queryset(self):
         user = self.request.user
