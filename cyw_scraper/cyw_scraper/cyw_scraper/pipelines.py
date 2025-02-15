@@ -4,7 +4,6 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 from asgiref.sync import sync_to_async
 from itemadapter import ItemAdapter
-from twisted.internet.threads import deferToThread
 from django.db import IntegrityError
 from cyw_backend.series.models import Series
 from cyw_backend.cars.models import Car
