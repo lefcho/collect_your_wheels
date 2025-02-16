@@ -46,20 +46,20 @@ function RegisterForm() {
         }
     };
 
-    const devRegister = (e) => {
-        e.preventDefault();
+    // const devRegister = (e) => {
+    //     e.preventDefault();
 
-        if (formData.password !== formData.repeatedPassword) {
-            alert("Passwords do not match!");
-            setLoading(false);
-            return;
-        }
+    //     if (formData.password !== formData.repeatedPassword) {
+    //         alert("Passwords do not match!");
+    //         setLoading(false);
+    //         return;
+    //     }
 
-        console.log(formData);
-    }
+    //     console.log(formData);
+    // }
 
     return (
-        <form onSubmit={devRegister} className="form-container">
+        <form className="form-container">
             <h2>Register</h2>
             <p>
                 Already have an account? <span><a href="/login">Log in</a></span>
@@ -100,7 +100,12 @@ function RegisterForm() {
                     placeholder='Repeat Password'
                 />
             </div>
-            <button className="form-button" type="submit" disabled={loading}>
+            <button 
+                className="form-button" 
+                type="submit" 
+                disabled={loading}
+                onClick={handleRegister}
+            >
                 Create Account
             </button>
         </form>

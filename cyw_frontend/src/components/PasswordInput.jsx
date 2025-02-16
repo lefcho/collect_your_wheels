@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function PasswordInput(props) {
-    const {name, handleChange, formDataField, placeholder} = props;
+    const { name, handleChange, formDataField, placeholder } = props;
 
     const [isHidden, setIsHidden] = useState(true);
 
@@ -16,9 +16,14 @@ function PasswordInput(props) {
                 placeholder={placeholder}
                 required
             />
-            <button onClick={() => {setIsHidden(!isHidden)}}>
-                <i className={`fa-solid ${isHidden ? 'fa-eye' : 'fa-eye-slash'}`}></i>
-            </button>
+
+            <i
+                onClick={() => { setIsHidden(!isHidden) }}
+                className={`fa-solid ${isHidden ?
+                        'fa-eye' :
+                        'fa-eye-slash'
+                    }`}
+            />
         </div>
     )
 }
