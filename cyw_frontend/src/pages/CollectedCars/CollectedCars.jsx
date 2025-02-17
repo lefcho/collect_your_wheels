@@ -42,7 +42,11 @@ function CollectedCars() {
 
             <div className='cars-container'>
                 {cars.map((car) => (
-                    <CarCard key={car.id} car={car} />
+                    <CarCard 
+                        key={car.id} 
+                        car={car}
+                        page='collected' 
+                    />
                 ))}
             </div>
 

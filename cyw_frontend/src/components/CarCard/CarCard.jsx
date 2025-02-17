@@ -1,12 +1,56 @@
-import React from 'react'
 
-function CarCard( { car } ) {
+import React from 'react'
+import CarActionButton from '../CarActionButton/CarActionButton'
+
+
+function CarCard({ car, page }) {
+
+    const handleRemoveCollected = () => {
+
+    }
+    
+    const handleAddCollected = () => {
+    
+    }
+    
+    const handleRemoveWishlisted = () => {
+    
+    }
+    
+    const handleAddWishlisted = () => {
+    
+    }
+
     const series = car.series;
+    const isWishlisted = car.is_wishlisted;
+    const isCollected = car.is_collected;
 
     return (
         <div className='car-card' dataid={car.id}>
             <h3>
                 {car.model} <span>({car.toy_number})</span>
+                <div className="action-buttons">
+                    <CarActionButton
+                        onClick={isCollected ?
+                            handleRemoveCollected :
+                            handleAddCollected
+                        }
+                        iconRegular="fa-regular fa-square-check"
+                        iconActive="fa-solid fa-square-check"
+                        isActive={isCollected}
+                        buttonClass="collected-button"
+                    />
+                    <CarActionButton
+                        onClick={isWishlisted ?
+                            handleRemoveWishlisted :
+                            handleAddWishlisted
+                        }
+                        iconRegular="fa-regular fa-heart"
+                        iconActive="fa-solid fa-heart"
+                        isActive={isWishlisted}
+                        buttonClass="wishlisted-button"
+                    />
+                </div>
             </h3>
             {car.is_treasure_hunt && <p>Treasure Hunt</p>}
             {car.is_super_treasure_hunt && <p>Super Treasure Hunt</p>}
