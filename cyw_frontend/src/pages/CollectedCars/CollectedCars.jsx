@@ -11,6 +11,33 @@ function CollectedCars() {
     const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const handleRemoveCollected = (car_id) => {
+        api
+            .delete(`/api/collected-cars/${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: false } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    };
+
+    const handleAddCollected = (car_id) => {
+        api
+            .post(`/api/collected-cars/${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: true } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    }
+
+
     const fetchCollectedCars = async (url = '/api/collected-cars/') => {
         setLoading(true);
         api
@@ -42,10 +69,12 @@ function CollectedCars() {
 
             <div className='cars-container'>
                 {cars.map((car) => (
-                    <CarCard 
-                        key={car.id} 
+                    <CarCard
+                        key={car.id}
                         car={car}
-                        page='collected' 
+                        handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                        handleAddCollected={() => handleAddCollected(car.id)}
+                        page='collected'
                     />
                 ))}
             </div>

@@ -1,26 +1,13 @@
 
 import React from 'react'
 import CarActionButton from '../CarActionButton/CarActionButton'
-import api from '../../api'
 
 
-function CarCard({ car, page }) {
+function CarCard(props) {
+
+    const { car, page, handleRemoveCollected, handleAddCollected } = props;
 
     const series = car.series;
-    let isWishlisted = car.is_wishlisted;
-    let isCollected = car.is_collected;
-
-    const handleRemoveCollected = () => {
-        api
-            .delete(`/api/collected-cars/${car.id}/`)
-            .catch((err) => alert(err));
-        
-        isCollected = false;
-    }
-
-    const handleAddCollected = () => {
-
-    }
 
     const handleRemoveWishlisted = () => {
 
@@ -36,25 +23,25 @@ function CarCard({ car, page }) {
                 {car.model} <span>({car.toy_number})</span>
                 <div className="action-buttons">
                     <CarActionButton
-                        onClick={isCollected ?
+                        onClick={car.is_collected ?
                             handleRemoveCollected :
                             handleAddCollected
                         }
                         iconRegular="fa-regular fa-square-check"
                         iconActive="fa-solid fa-square-check"
-                        isActive={isCollected}
+                        isActive={car.is_collected}
                         buttonClass="collected-button"
                     />
-                    <CarActionButton
-                        onClick={isWishlisted ?
+                    {/* <CarActionButton
+                        onClick={car.is_wishlisted ?
                             handleRemoveWishlisted :
                             handleAddWishlisted
                         }
                         iconRegular="fa-regular fa-heart"
                         iconActive="fa-solid fa-heart"
-                        isActive={isWishlisted}
+                        isActive={car.is_wishlisted}
                         buttonClass="wishlisted-button"
-                    />
+                    /> */}
                 </div>
             </h3>
             {car.is_treasure_hunt && <p>Treasure Hunt</p>}
