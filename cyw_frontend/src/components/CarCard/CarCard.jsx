@@ -1,29 +1,34 @@
 
 import React from 'react'
 import CarActionButton from '../CarActionButton/CarActionButton'
+import api from '../../api'
 
 
 function CarCard({ car, page }) {
 
-    const handleRemoveCollected = () => {
-
-    }
-    
-    const handleAddCollected = () => {
-    
-    }
-    
-    const handleRemoveWishlisted = () => {
-    
-    }
-    
-    const handleAddWishlisted = () => {
-    
-    }
-
     const series = car.series;
-    const isWishlisted = car.is_wishlisted;
-    const isCollected = car.is_collected;
+    let isWishlisted = car.is_wishlisted;
+    let isCollected = car.is_collected;
+
+    const handleRemoveCollected = () => {
+        api
+            .delete(`/api/collected-cars/${car.id}/`)
+            .catch((err) => alert(err));
+        
+        isCollected = false;
+    }
+
+    const handleAddCollected = () => {
+
+    }
+
+    const handleRemoveWishlisted = () => {
+
+    }
+
+    const handleAddWishlisted = () => {
+
+    }
 
     return (
         <div className='car-card' dataid={car.id}>
