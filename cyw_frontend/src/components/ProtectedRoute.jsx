@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
 
-function ProtectedRoute(children) {
+function ProtectedRoute({ children }) {
     const [isAuthorised, setisAuthorised] = useState(null);
 
     useEffect(() => {
