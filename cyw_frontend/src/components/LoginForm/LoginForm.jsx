@@ -1,9 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../PasswordInput';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants';
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 function LoginForm() {
@@ -11,6 +12,8 @@ function LoginForm() {
         username: '',
         password: '',
     });
+
+    const { setIsAuthenticated } = useContext(AuthContext);
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -34,6 +37,7 @@ function LoginForm() {
 
             localStorage.setItem(ACCESS_TOKEN, response.data.access);
             localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
+            setIsAuthenticated(true);
             navigate('/collected');
         } catch (err) {
             alert(err);

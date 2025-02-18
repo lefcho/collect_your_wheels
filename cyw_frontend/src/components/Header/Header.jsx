@@ -1,17 +1,19 @@
 
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { checkAuth } from '../../utils/auth.js'
-import Logout from '../Logout';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../utils/logout';
+import { AuthContext } from '../../contexts/AuthContext';
+
 
 function Header() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        setIsAuthenticated(checkAuth());
-        console.log(isAuthenticated);
-    }, []);
-
+    const handleLogout = () => {
+        logout();
+        setIsAuthenticated(false);
+        navigate('/');
+    };
 
     return (
         <header className="header">
@@ -22,9 +24,7 @@ function Header() {
                         <Link to="/profile">Profile</Link>
                         <Link to="/collected-cars">Collected Cars</Link>
                         <Link to="/wishlisted-cars">Wishlisted Cars</Link>
-                        <button onClick={<Logout />}>
-                            Logout
-                        </button>
+                        <button onClick={handleLogout}>Logout</button>
                     </>
                 ) : (
                     <>

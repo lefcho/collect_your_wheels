@@ -5,8 +5,6 @@ import { REFRESH_TOKEN } from '../constants.js';
 
 export function checkAuth() {  
     const token = localStorage.getItem(ACCESS_TOKEN);
-    console.log(token);
-    
     
     if (!token) return false;
 
