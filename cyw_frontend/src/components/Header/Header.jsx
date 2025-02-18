@@ -1,7 +1,6 @@
 
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Search from '../../pages/Search/Search.jsx';
 import { logout } from '../../utils/logout';
 import { AuthContext } from '../../contexts/AuthContext';
 

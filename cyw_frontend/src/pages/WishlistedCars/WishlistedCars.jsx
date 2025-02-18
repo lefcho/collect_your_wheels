@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import api from '../../api';
 import CarCard from '../../components/CarCard/CarCard';
+import Pagination from '../../components/Pagination/Pagination';
 
 function WishlistedCars() {
 
@@ -98,12 +99,6 @@ function WishlistedCars() {
         fetchWishlistedCars(`${wishlistedUrl}${searchQuery}`);
     };
 
-    const handlePageChange = (url) => {
-        if (url) {
-            fetchWishlistedCars(url);
-        }
-    };
-
     return (
         <div>
             <h1>Wishlisted Cars</h1>
@@ -132,20 +127,12 @@ function WishlistedCars() {
                     />
                 ))}
             </div>
-
-            <div className="pagination">
-                {prevPage && (
-                    <button onClick={() => handlePageChange(prevPage)} disabled={loading}>
-                        Previous
-                    </button>
-                )}
-                {nextPage && (
-                    <button onClick={() => handlePageChange(nextPage)} disabled={loading}>
-                        Next
-                    </button>
-                )}
-            </div>
-
+            <Pagination 
+                prevPage={prevPage} 
+                nextPage={nextPage}
+                loading={loading}
+                fetchCars={fetchWishlistedCars}
+            />
         </div>
     )
 }

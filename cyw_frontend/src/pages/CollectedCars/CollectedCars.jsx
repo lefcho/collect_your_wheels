@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import api from '../../api';
 import CarCard from '../../components/CarCard/CarCard';
+import Pagination from '../../components/Pagination/Pagination';
 
 
 function CollectedCars() {
@@ -100,18 +101,12 @@ function CollectedCars() {
                 ))}
             </div>
 
-            <div className="pagination">
-                {prevPage && (
-                    <button onClick={() => handlePageChange(prevPage)} disabled={loading}>
-                        Previous
-                    </button>
-                )}
-                {nextPage && (
-                    <button onClick={() => handlePageChange(nextPage)} disabled={loading}>
-                        Next
-                    </button>
-                )}
-            </div>
+            <Pagination 
+                prevPage={prevPage} 
+                nextPage={nextPage}
+                loading={loading}
+                fetchCars={fetchCollectedCars}
+            />
         </div>
     )
 }
