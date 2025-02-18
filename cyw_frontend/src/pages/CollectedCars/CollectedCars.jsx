@@ -6,7 +6,10 @@ import CarCard from '../../components/CarCard/CarCard';
 
 function CollectedCars() {
 
+    const collectedUrl = '/api/collected-cars/';
+
     const [cars, setCars] = useState([]);
+    const [searchParam, setSearchParam] = useState(null);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -37,8 +40,7 @@ function CollectedCars() {
             .catch((err) => alert(err));
     }
 
-
-    const fetchCollectedCars = async (url = '/api/collected-cars/') => {
+    const fetchCollectedCars = async (url = collectedUrl) => {
         setLoading(true);
         api
             .get(url)
@@ -57,14 +59,31 @@ function CollectedCars() {
         fetchCollectedCars();
     }, []);
 
+    const handleSearchCollected = (e) => {
+        e.preventDefault();
+        const searchQuery = searchParam ? `?search=${encodeURIComponent(searchParam)}` : '';
+        fetchCollectedCars(`${collectedUrl}${searchQuery}`);
+    };
+
+    const handlePageChange = (url) => {
+        if (url) {
+          fetchCollectedCars(url);
+        }
+      };
+
     return (
         <div>
             <h1>Collected Cars</h1>
             <form >
                 <input
                     type="text"
+                    onChange={(e) => setSearchParam(e.target.value)}
                     placeholder='Search collected cars...'
                 />
+                <button
+                    onClick={(e) => handleSearchCollected(e)}>
+                    Search
+                </button>
             </form>
 
             <div className='cars-container'>
@@ -79,6 +98,18 @@ function CollectedCars() {
                 ))}
             </div>
 
+            <div className="pagination">
+                {prevPage && (
+                    <button onClick={() => handlePageChange(prevPage)} disabled={loading}>
+                        Previous
+                    </button>
+                )}
+                {nextPage && (
+                    <button onClick={() => handlePageChange(nextPage)} disabled={loading}>
+                        Next
+                    </button>
+                )}
+            </div>
 
 
             <button onClick={() => {

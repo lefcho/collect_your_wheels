@@ -32,7 +32,7 @@ function CarCard(props) {
                         isActive={car.is_collected}
                         buttonClass="collected-button"
                     />
-                    {/* <CarActionButton
+                    {page !== 'collected' && <CarActionButton
                         onClick={car.is_wishlisted ?
                             handleRemoveWishlisted :
                             handleAddWishlisted
@@ -41,7 +41,7 @@ function CarCard(props) {
                         iconActive="fa-solid fa-heart"
                         isActive={car.is_wishlisted}
                         buttonClass="wishlisted-button"
-                    /> */}
+                    />}
                 </div>
             </h3>
             {car.is_treasure_hunt && <p>Treasure Hunt</p>}
