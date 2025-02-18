@@ -61,15 +61,17 @@ function CollectedCars() {
 
     const handleSearchCollected = (e) => {
         e.preventDefault();
-        const searchQuery = searchParam ? `?search=${encodeURIComponent(searchParam)}` : '';
+        const searchQuery = searchParam
+            ? `?search=${encodeURIComponent(searchParam)}`
+            : '';
         fetchCollectedCars(`${collectedUrl}${searchQuery}`);
     };
 
     const handlePageChange = (url) => {
         if (url) {
-          fetchCollectedCars(url);
+            fetchCollectedCars(url);
         }
-      };
+    };
 
     return (
         <div>
