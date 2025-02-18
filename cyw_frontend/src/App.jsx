@@ -12,11 +12,6 @@ import Search from './pages/Search/Search';
 import Layout from './components/Layout';
 
 
-function Logout() {
-    localStorage.clear();
-    return <Navigate to='/' />
-}
-
 function RegisterAndLogout() {
     localStorage.clear();
     return <Register />
@@ -30,7 +25,6 @@ function App() {
                 <Route path="/" element={<Layout />}>
                     <Route path='/' element={<Home />} />
                     <Route path='/login' element={<Login />} />
-                    <Route path='/logout' element={<Logout />} />
                     <Route path='/register' element={<RegisterAndLogout />} />
                     <Route path='/search' element={<Search />} />
                     <Route path='/collected' element={
