@@ -112,13 +112,6 @@ function CollectedCars() {
                     </button>
                 )}
             </div>
-
-
-            <button onClick={() => {
-                console.log(cars);
-            }}>
-                Show Cars
-            </button>
         </div>
     )
 }

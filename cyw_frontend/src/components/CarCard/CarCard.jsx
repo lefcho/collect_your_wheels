@@ -5,17 +5,16 @@ import CarActionButton from '../CarActionButton/CarActionButton'
 
 function CarCard(props) {
 
-    const { car, page, handleRemoveCollected, handleAddCollected } = props;
+    const { 
+        car, 
+        page, 
+        handleRemoveCollected, 
+        handleAddCollected,
+        handleAddWishlisted,
+        handleRemoveWishlisted,
+    } = props;
 
     const series = car.series;
-
-    const handleRemoveWishlisted = () => {
-
-    }
-
-    const handleAddWishlisted = () => {
-
-    }
 
     return (
         <div className='car-card' dataid={car.id}>

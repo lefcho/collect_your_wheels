@@ -6,6 +6,7 @@ import CarCard from '../../components/CarCard/CarCard';
 function WishlistedCars() {
 
     const wishlistedUrl = '/api/wishlisted-cars/';
+    const collectedUrl = '/api/collected-cars/';
 
     const [cars, setCars] = useState([]);
     const [searchParam, setSearchParam] = useState(null);
@@ -34,24 +35,60 @@ function WishlistedCars() {
 
     const handleAddCollected = (car_id) => {
         api
-            .post(`/api/collected-cars/${car_id}/`)
+            .post(`${collectedUrl}${car_id}/`)
             .then(() => {
                 setCars(prevCars =>
-                    prevCars.map(car => {
-                        return car.id === car_id ? { ...car, is_collected: true } : car
+                    prevCars.filter((car) => {
+                        return car.id !== car_id
                     })
                 );
             })
             .catch((err) => alert(err));
+        
+        handleRemoveWishlisted(car_id);
     }
 
-    const handleAddWishlisted = (car_id) => {
+    const handleRemoveCollected = (car_id) => {
+        api
+            .delete(`${collectedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: false } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    };
 
+    const handleAddWishlisted = (car_id) => {
+        api
+            .post(`${wishlistedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map((car) => {
+                        return car.id === car_id ?
+                            { ...car, is_wishlisted: true } :
+                            car
+                    })
+                )
+            })
     }
 
     const handleRemoveWishlisted = (car_id) => {
-
+        api
+            .delete(`${wishlistedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map((car) => {
+                        return car.id === car_id ?
+                            { ...car, is_wishlisted: false } :
+                            car
+                    })
+                )
+            })
     }
+
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -87,9 +124,11 @@ function WishlistedCars() {
                     <CarCard
                         key={car.id}
                         car={car}
-                        // handleRemoveCollected={() => handleRemoveCollected(car.id)}
-                        // handleAddCollected={() => handleAddCollected(car.id)}
-                        page='collected'
+                        handleAddCollected={() => handleAddCollected(car.id)}
+                        handleAddWishlisted={() => handleAddWishlisted(car.id)}
+                        handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
+                        handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                        page='wishlisted'
                     />
                 ))}
             </div>
