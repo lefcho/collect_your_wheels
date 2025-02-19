@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import api from '../../api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Pagination from '../Pagination/Pagination';
+import FoldingSeries from '../FoldingSeries/FoldingSeries';
 
 function SeriesSearch(props) {
 
@@ -40,7 +41,14 @@ function SeriesSearch(props) {
     };
 
     return (
-        <div>SeriesSearch</div>
+        <div>
+            {series.map((series) => {
+                return <FoldingSeries
+                    key={series.id}
+                    series={series}
+                />
+            })}
+        </div>
     )
 }
 
