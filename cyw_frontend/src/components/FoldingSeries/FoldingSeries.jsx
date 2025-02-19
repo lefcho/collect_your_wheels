@@ -3,13 +3,12 @@ import React, { useState, useEffect } from 'react'
 import SmallCarCard from '../SmallCarCard/SmallCarCard';
 import api from '../../api';
 import { motion, AnimatePresence } from 'framer-motion';
+import { collectedUrl, searchCarsUrl, wishlistedUrl } from '../../constants';
 
 
 function FoldingSeries(props) {
 
     const { series } = props;
-    const searchCarsUrl = '/api/search-cars/'
-
 
     const [cars, setCars] = useState([]);
     const [isFolded, setIsFolded] = useState(true);
@@ -32,6 +31,66 @@ function FoldingSeries(props) {
     useEffect(() => {
         fetchCarsFromSeries();
     }, []);
+
+    const handleAddCollected = (car_id) => {
+        api
+            .post(`${collectedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? {
+                            ...car,
+                            is_collected: true,
+                            is_wishlisted: false
+                        } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+
+        handleRemoveWishlisted(car_id);
+    }
+
+    const handleRemoveCollected = (car_id) => {
+        api
+            .delete(`${collectedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: false } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    };
+
+    const handleAddWishlisted = (car_id) => {
+        api
+            .post(`${wishlistedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map((car) => {
+                        return car.id === car_id ?
+                            { ...car, is_wishlisted: true } :
+                            car
+                    })
+                )
+            })
+    }
+
+    const handleRemoveWishlisted = (car_id) => {
+        api
+            .delete(`${wishlistedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map((car) => {
+                        return car.id === car_id ?
+                            { ...car, is_wishlisted: false } :
+                            car
+                    })
+                )
+            })
+    }
 
     const contentVariants = {
         collapsed: { height: 0, opacity: 0 },
@@ -70,7 +129,14 @@ function FoldingSeries(props) {
                         style={{ overflow: 'hidden' }}
                     >
                         {cars.map((car) => (
-                            <SmallCarCard key={car.id} car={car} />
+                            <SmallCarCard
+                                handleRemoveWishlisted={handleRemoveWishlisted}
+                                handleAddWishlisted={handleAddWishlisted}
+                                handleRemoveCollected={handleRemoveCollected}
+                                handleAddCollected={handleAddCollected}
+                                key={car.id}
+                                car={car}
+                            />
                         ))}
                     </motion.div>
                 )}

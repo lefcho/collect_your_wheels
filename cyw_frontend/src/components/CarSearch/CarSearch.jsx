@@ -5,14 +5,11 @@ import CarCard from '../CarCard/CarCard';
 import Pagination from '../Pagination/Pagination';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext, useState, useEffect } from 'react';
+import { collectedUrl, searchCarsUrl, wishlistedUrl } from '../../constants';
 
 
 function CarSearch(props) {
     const { query } = props;
-
-    const searchUrl = '/api/search-cars/';
-    const wishlistedUrl = '/api/wishlisted-cars/';
-    const collectedUrl = '/api/collected-cars/';
 
     const { isAuthenticated } = useContext(AuthContext);
 
@@ -26,7 +23,7 @@ function CarSearch(props) {
     }, [query]);
 
 
-    const fetchSearchedCars = async (url = `${searchUrl}?search=${query}`) => {
+    const fetchSearchedCars = async (url = `${searchCarsUrl}?search=${query}`) => {
         setLoading(true);
         api
             .get(url)
