@@ -1,9 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import api from '../../api';
 import Pagination from '../../components/Pagination/Pagination';
 import CarCard from '../../components/CarCard/CarCard';
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 function Search() {
@@ -11,6 +12,7 @@ function Search() {
     const wishlistedUrl = '/api/wishlisted-cars/';
     const collectedUrl = '/api/collected-cars/';
 
+    const { isAuthenticated } = useContext(AuthContext);
     const [searchParams] = useSearchParams();
     const query = searchParams.get('search_query');
     const navigate = useNavigate();
@@ -45,8 +47,12 @@ function Search() {
             .post(`${collectedUrl}${car_id}/`)
             .then(() => {
                 setCars(prevCars =>
-                    prevCars.filter((car) => {
-                        return car.id !== car_id
+                    prevCars.map(car => {
+                        return car.id === car_id ? {
+                            ...car,
+                            is_collected: true,
+                            is_wishlisted: false
+                        } : car
                     })
                 );
             })
@@ -112,15 +118,16 @@ function Search() {
                         <h5>Results for: {query}</h5>
                         <div className='cars-container'>
                             {cars.map((car) => (
-                            <CarCard
-                                key={car.id}
-                                car={car}
-                                handleAddCollected={() => handleAddCollected(car.id)}
-                                handleAddWishlisted={() => handleAddWishlisted(car.id)}
-                                handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
-                                handleRemoveCollected={() => handleRemoveCollected(car.id)}
-                                page='wishlisted'
-                            />
+                                <CarCard
+                                    key={car.id}
+                                    car={car}
+                                    handleAddCollected={() => handleAddCollected(car.id)}
+                                    handleAddWishlisted={() => handleAddWishlisted(car.id)}
+                                    handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
+                                    handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                                    isUserAuthenticated={isAuthenticated}
+                                    page='wishlisted'
+                                />
                             ))}
                         </div>
                     </div> :

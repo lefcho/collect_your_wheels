@@ -124,6 +124,7 @@ function WishlistedCars() {
                         handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
                         handleRemoveCollected={() => handleRemoveCollected(car.id)}
                         page='wishlisted'
+                        isUserAuthenticated={true}
                     />
                 ))}
             </div>

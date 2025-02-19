@@ -97,6 +97,7 @@ function CollectedCars() {
                         handleRemoveCollected={() => handleRemoveCollected(car.id)}
                         handleAddCollected={() => handleAddCollected(car.id)}
                         page='collected'
+                        isUserAuthenticated={true}
                     />
                 ))}
             </div>

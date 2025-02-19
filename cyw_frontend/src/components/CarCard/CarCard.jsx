@@ -1,17 +1,19 @@
 
 import React from 'react'
 import CarActionButton from '../CarActionButton/CarActionButton'
+import { Link } from 'react-router-dom';
 
 
 function CarCard(props) {
 
-    const { 
-        car, 
-        page, 
-        handleRemoveCollected, 
+    const {
+        car,
+        page,
+        handleRemoveCollected,
         handleAddCollected,
         handleAddWishlisted,
         handleRemoveWishlisted,
+        isUserAuthenticated,
     } = props;
 
     const series = car.series;
@@ -20,6 +22,7 @@ function CarCard(props) {
         <div className='car-card' dataid={car.id}>
             <h3>
                 {car.model} <span>({car.toy_number})</span>
+                {isUserAuthenticated ?
                 <div className="action-buttons">
                     <CarActionButton
                         onClick={car.is_collected ?
@@ -41,7 +44,11 @@ function CarCard(props) {
                         isActive={car.is_wishlisted}
                         buttonClass="wishlisted-button"
                     />}
+                </div> :
+                <div>
+                    <Link to="/login">Collect</Link>
                 </div>
+                }
             </h3>
             {car.is_treasure_hunt && <p>Treasure Hunt</p>}
             {car.is_super_treasure_hunt && <p>Super Treasure Hunt</p>}
