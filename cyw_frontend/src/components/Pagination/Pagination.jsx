@@ -5,7 +5,7 @@ function Pagination(props) {
     const { prevPage, nextPage, loading, fetchCars } = props;
 
     const handlePageChange = (url) => {
-        if (url) {
+        if (url) {   
             fetchCars(url);
         }
     };

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import api from '../../api';
 import Pagination from '../../components/Pagination/Pagination';
+import CarCard from '../../components/CarCard/CarCard';
 
 
 function Search() {
@@ -22,9 +23,9 @@ function Search() {
 
     useEffect(() => {
         fetchSearchedCars();
-    }, []);
+    }, [query]);
 
-    const fetchSearchedCars = async (url = searchUrl) => {
+    const fetchSearchedCars = async (url = `${searchUrl}?search=${query}`) => {
         setLoading(true);
         api
             .get(url)
@@ -107,7 +108,22 @@ function Search() {
             <h1>Search Results</h1>
             {
                 query ?
-                    <p>Results for: {query}</p> :
+                    <div>
+                        <h5>Results for: {query}</h5>
+                        <div className='cars-container'>
+                            {cars.map((car) => (
+                            <CarCard
+                                key={car.id}
+                                car={car}
+                                handleAddCollected={() => handleAddCollected(car.id)}
+                                handleAddWishlisted={() => handleAddWishlisted(car.id)}
+                                handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
+                                handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                                page='wishlisted'
+                            />
+                            ))}
+                        </div>
+                    </div> :
                     <p>No results found.</p>
             }
             <Pagination
