@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CarSearch from '../../components/CarSearch/CarSearch';
+import SeriesSearch from '../../components/SeriesSearch/SeriesSearch';
 
 
 function Search() {
@@ -25,12 +26,17 @@ function Search() {
                 </button>
             </div>}
             {
-                query ?
-                    <div>
-                        <h5>Results for: {query}</h5>
+            query ?
+                <div>
+                    <h5>Results for: {query}</h5>
+                    {
+                    searchFor === 'cars' ?
                         <CarSearch query={query} />
-                    </div> :
-                    <p>No results found.</p>
+                        :
+                        <SeriesSearch query={query} />
+                    }
+                </div> :
+                <p>No results found.</p>
             }
         </div>
 
