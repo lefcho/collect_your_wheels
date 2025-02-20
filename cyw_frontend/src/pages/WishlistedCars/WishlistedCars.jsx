@@ -103,11 +103,16 @@ function WishlistedCars() {
         <div>
             <h1>Wishlisted Cars</h1>
             <form >
-                <input
+            <input
                     type="text"
+                    value={searchParam}
                     onChange={(e) => setSearchParam(e.target.value)}
-                    placeholder='Search wishlisted cars...'
+                    placeholder='Search collected cars...'
                 />
+                {searchParam && <button
+                    onClick={() => setSearchParam('')}>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>}
                 <button
                     onClick={(e) => handleSearch(e)}>
                     Search

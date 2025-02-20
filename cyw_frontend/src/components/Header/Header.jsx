@@ -27,12 +27,17 @@ function Header() {
         <header className="header">
             <Link to="/">Home</Link>
             <form onSubmit={(e) => handleSearchSubmit(e)}>
-                <input 
-                    className="search-input" 
+                <input
+                    className="search-input"
+                    value={query}
                     type="text"
                     placeholder="Search . . ."
                     onChange={(e) => setQuery(e.target.value)}
                 />
+                {query && <button
+                    onClick={() => setQuery('')}>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>}
                 <button className="circle" type="submit">Search</button>
             </form>
             <nav>

@@ -80,9 +80,14 @@ function CollectedCars() {
             <form >
                 <input
                     type="text"
+                    value={searchParam}
                     onChange={(e) => setSearchParam(e.target.value)}
                     placeholder='Search collected cars...'
                 />
+                {searchParam && <button
+                    onClick={() => setSearchParam('')}>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>}
                 <button
                     onClick={(e) => handleSearchCollected(e)}>
                     Search
