@@ -40,6 +40,7 @@ function SmallCarCard(props) {
                         iconActive="fa-solid fa-square-check"
                         isActive={car.is_collected}
                         buttonClass="collected-button"
+                        car_id={car.id}
                     />
                     <CarActionButton
                         onClick={car.is_wishlisted ?
@@ -50,6 +51,7 @@ function SmallCarCard(props) {
                         iconActive="fa-solid fa-heart"
                         isActive={car.is_wishlisted}
                         buttonClass="wishlisted-button"
+                        car_id={car.id}
                     />
                 </div> :
                 <div>

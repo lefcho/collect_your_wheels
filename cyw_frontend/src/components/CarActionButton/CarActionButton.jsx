@@ -4,6 +4,7 @@ import React from 'react';
 
 function CarActionButton(props) {
     const {
+        car_id,
         onClick, 
         iconRegular, 
         iconActive, 
@@ -12,7 +13,7 @@ function CarActionButton(props) {
     } = props;
 
     return (
-        <button onClick={onClick} className={buttonClass}>
+        <button onClick={() => onClick(car_id)} className={buttonClass}>
             <i className={isActive ? iconActive : iconRegular}></i>
         </button>
     );
