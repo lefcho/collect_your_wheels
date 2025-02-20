@@ -1,25 +1,29 @@
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import api from '../../api';
-import CarCard from '../../components/CarCard/CarCard';
-import Pagination from '../../components/Pagination/Pagination';
+import CarCard from '../CarCard/CarCard';
+import Pagination from '../Pagination/Pagination';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext, useState, useEffect } from 'react';
+import { collectedUrl, searchCarsUrl, wishlistedUrl } from '../../constants';
 
-function WishlistedCars() {
 
-    const wishlistedUrl = '/api/wishlisted-cars/';
-    const collectedUrl = '/api/collected-cars/';
+function CarSearch(props) {
+    const { query } = props;
+
+    const { isAuthenticated } = useContext(AuthContext);
 
     const [cars, setCars] = useState([]);
-    const [searchParam, setSearchParam] = useState(null);
-    const [nextPage, setNextPage] = useState(null);
-    const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [prevPage, setPrevPage] = useState(null);
+    const [nextPage, setNextPage] = useState(null);
 
     useEffect(() => {
-        fetchWishlistedCars();
-    }, []);
+        fetchSearchedCars();
+    }, [query]);
 
-    const fetchWishlistedCars = async (url = wishlistedUrl) => {
+
+    const fetchSearchedCars = async (url = `${searchCarsUrl}?search=${query}`) => {
         setLoading(true);
         api
             .get(url)
@@ -39,13 +43,17 @@ function WishlistedCars() {
             .post(`${collectedUrl}${car_id}/`)
             .then(() => {
                 setCars(prevCars =>
-                    prevCars.filter((car) => {
-                        return car.id !== car_id
+                    prevCars.map(car => {
+                        return car.id === car_id ? {
+                            ...car,
+                            is_collected: true,
+                            is_wishlisted: false
+                        } : car
                     })
                 );
             })
             .catch((err) => alert(err));
-        
+
         handleRemoveWishlisted(car_id);
     }
 
@@ -90,52 +98,28 @@ function WishlistedCars() {
             })
     }
 
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const searchQuery = searchParam ?
-            `?search=${encodeURIComponent(searchParam)}` :
-            '';
-        fetchWishlistedCars(`${wishlistedUrl}${searchQuery}`);
-    };
-
     return (
-        <div>
-            <h1>Wishlisted Cars</h1>
-            <form >
-                <input
-                    type="text"
-                    onChange={(e) => setSearchParam(e.target.value)}
-                    placeholder='Search wishlisted cars...'
+        <div className='cars-container'>
+            {cars.map((car) => (
+                <CarCard
+                    key={car.id}
+                    car={car}
+                    handleAddCollected={() => handleAddCollected(car.id)}
+                    handleAddWishlisted={() => handleAddWishlisted(car.id)}
+                    handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
+                    handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                    isUserAuthenticated={isAuthenticated}
+                    page='basic'
                 />
-                <button
-                    onClick={(e) => handleSearch(e)}>
-                    Search
-                </button>
-            </form>
-
-            <div className='cars-container'>
-                {cars.map((car) => (
-                    <CarCard
-                        key={car.id}
-                        car={car}
-                        handleAddCollected={() => handleAddCollected(car.id)}
-                        handleAddWishlisted={() => handleAddWishlisted(car.id)}
-                        handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
-                        handleRemoveCollected={() => handleRemoveCollected(car.id)}
-                        page='wishlisted'
-                        isUserAuthenticated={true}
-                    />
-                ))}
-            </div>
-            <Pagination 
-                prevPage={prevPage} 
+            ))}
+            <Pagination
+                prevPage={prevPage}
                 nextPage={nextPage}
                 loading={loading}
-                fetchCars={fetchWishlistedCars}
+                fetchCars={fetchSearchedCars}
             />
         </div>
     )
 }
 
-export default WishlistedCars;
+export default CarSearch

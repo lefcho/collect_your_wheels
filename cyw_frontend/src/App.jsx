@@ -8,12 +8,10 @@ import NotFound from './pages/NotFound/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import CollectedCars from './pages/CollectedCars/CollectedCars';
 import WishlistedCars from './pages/WishlistedCars/WishlistedCars';
+import Search from './pages/Search/Search';
+import Layout from './components/Layout';
+import { AuthProvider } from './contexts/AuthContext.jsx'
 
-
-function Logout() {
-    localStorage.clear();
-    return <Navigate to='/'/>
-}
 
 function RegisterAndLogout() {
     localStorage.clear();
@@ -21,26 +19,30 @@ function RegisterAndLogout() {
 }
 
 function App() {
-    
+
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path='/'element={<Home />}/>
-                <Route path='/login' element={<Login />}/>
-                <Route path='/logout' element={<Logout />}/>
-                <Route path='/register' element={<RegisterAndLogout />}/>
-                <Route path='/collected' element={
-                    <ProtectedRoute>
-                        <CollectedCars />
-                    </ProtectedRoute>
-                    }/>
-                <Route path='/wishlisted' element={
-                    <ProtectedRoute>
-                        <WishlistedCars />
-                    </ProtectedRoute>
-                    }/>
-                <Route path='*' element={<NotFound />}/>
-            </Routes>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/register' element={<RegisterAndLogout />} />
+                        <Route path='/results' element={<Search />} />
+                        <Route path='/collected' element={
+                            <ProtectedRoute>
+                                <CollectedCars />
+                            </ProtectedRoute>
+                        } />
+                        <Route path='/wishlisted' element={
+                            <ProtectedRoute>
+                                <WishlistedCars />
+                            </ProtectedRoute>
+                        } />
+                        <Route path='*' element={<NotFound />} />
+                    </Route>
+                </Routes>
+            </AuthProvider>
         </BrowserRouter>
     )
 }

@@ -2,16 +2,46 @@
 import React, { useState, useEffect } from 'react'
 import api from '../../api';
 import CarCard from '../../components/CarCard/CarCard';
+import Pagination from '../../components/Pagination/Pagination';
 
 
 function CollectedCars() {
 
+    const collectedUrl = '/api/collected-cars/';
+
     const [cars, setCars] = useState([]);
+    const [searchParam, setSearchParam] = useState(null);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const fetchCollectedCars = async (url = '/api/collected-cars/') => {
+    const handleRemoveCollected = (car_id) => {
+        api
+            .delete(`/api/collected-cars/${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: false } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    };
+
+    const handleAddCollected = (car_id) => {
+        api
+            .post(`/api/collected-cars/${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: true } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    }
+
+    const fetchCollectedCars = async (url = collectedUrl) => {
         setLoading(true);
         api
             .get(url)
@@ -30,29 +60,54 @@ function CollectedCars() {
         fetchCollectedCars();
     }, []);
 
+    const handleSearchCollected = (e) => {
+        e.preventDefault();
+        const searchQuery = searchParam
+            ? `?search=${encodeURIComponent(searchParam)}`
+            : '';
+        fetchCollectedCars(`${collectedUrl}${searchQuery}`);
+    };
+
+    const handlePageChange = (url) => {
+        if (url) {
+            fetchCollectedCars(url);
+        }
+    };
+
     return (
         <div>
             <h1>Collected Cars</h1>
             <form >
                 <input
                     type="text"
+                    onChange={(e) => setSearchParam(e.target.value)}
                     placeholder='Search collected cars...'
                 />
+                <button
+                    onClick={(e) => handleSearchCollected(e)}>
+                    Search
+                </button>
             </form>
 
             <div className='cars-container'>
                 {cars.map((car) => (
-                    <CarCard key={car.id} car={car} />
+                    <CarCard
+                        key={car.id}
+                        car={car}
+                        handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                        handleAddCollected={() => handleAddCollected(car.id)}
+                        page='collected'
+                        isUserAuthenticated={true}
+                    />
                 ))}
             </div>
 
-
-
-            <button onClick={() => {
-                console.log(cars);
-            }}>
-                Show Cars
-            </button>
+            <Pagination 
+                prevPage={prevPage} 
+                nextPage={nextPage}
+                loading={loading}
+                fetchCars={fetchCollectedCars}
+            />
         </div>
     )
 }
