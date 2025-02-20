@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/logout';
 import { AuthContext } from '../../contexts/AuthContext';
+import logo from '../../assets/logo.svg'
 
 
 function Header() {
@@ -25,7 +26,12 @@ function Header() {
 
     return (
         <header className="header">
-            <Link to="/">Home</Link>
+
+            <Link to="/">
+                <div>
+                    <img src={logo} alt="Logo" />
+                </div>
+            </Link>
             <form onSubmit={(e) => handleSearchSubmit(e)}>
                 <input
                     className="search-input"
@@ -43,7 +49,6 @@ function Header() {
             <nav>
                 {isAuthenticated ? (
                     <>
-                        <Link to="/profile">Profile</Link>
                         <Link to="/collected">Collected Cars</Link>
                         <Link to="/wishlisted">Wishlisted Cars</Link>
                         <button onClick={handleLogout}>Logout</button>
