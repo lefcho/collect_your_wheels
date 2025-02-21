@@ -44,6 +44,7 @@ function Header() {
                     onChange={(e) => setQuery(e.target.value)}
                 />
                 {query && <button
+                    type='reset'
                     className={styles['cancel-btn']}
                     onClick={() => setQuery('')}>
                     <i className="fa-solid fa-xmark"></i>
@@ -55,16 +56,25 @@ function Header() {
             <nav>
                 {isAuthenticated ? (
                     <div className={styles['prof-cont']}>
-                        <button 
+                        <button
                             className={styles['prof-button']}
-                            onClick={() => 
-                            setShowProfCont(!showProfCont)}>
+                            onClick={() =>
+                                setShowProfCont(!showProfCont)}>
                             <i className="fa-solid fa-user"></i>
                         </button>
-                        {showProfCont && <div className={styles['prof-info-cont']}>
-                            <Link to="/collected">Collected Cars</Link>
-                            <Link to="/wishlisted">Wishlisted Cars</Link>
-                            <button onClick={handleLogout}>
+                        {showProfCont && <div
+                            className={styles['prof-info-cont']}>
+                            <Link className={styles['icon-text']} to="/collected">
+                                <i class="fa-solid fa-car-on"></i>
+                                <button>Collected Cars</button>
+                            </Link>
+                            <Link className={styles['icon-text']} to="/wishlisted">
+                                <i class="fa-solid fa-car"></i>
+                                <button>Wishlisted Cars</button>
+                            </Link>
+                            <button
+                                className={styles['icon-text']}
+                                onClick={handleLogout}>
                                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                 <p>Logout</p>
                             </button>

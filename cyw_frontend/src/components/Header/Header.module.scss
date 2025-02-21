@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&display=swap');
+
+
 $light-blue: rgba(167, 227, 243, 0.809);
 $light-grey: rgba(147, 150, 150, 0.825);
 $grey: rgb(82, 159, 159);
@@ -58,6 +61,7 @@ $grey: rgb(82, 159, 159);
     border: none;
     padding: 0.5em;
     font-size: 1rem;
+    font-family: "Noto Sans Hanunoo", serif;
 
     &:hover {
         cursor: pointer;
@@ -166,10 +170,27 @@ $grey: rgb(82, 159, 159);
 }
 
 .prof-info-cont {
+    padding: 0.5em 0.5em 0.5em 0.5em;
     position: absolute;
     left: -80px;
     display: flex;
     flex-direction: column;
     background-color: orangered;
     gap: 1em;
+    border-radius: 6px;
+
+    button {
+        text-decoration: none;
+        background-color: transparent;
+    }
+}
+
+.icon-text {
+
+    display: flex;
+    gap: 0.5em;
+
+    &:hover {
+        background-color: orange;
+    }
 }
