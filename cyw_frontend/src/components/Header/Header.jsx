@@ -1,4 +1,5 @@
 
+import styles from './Header.module.scss';
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/logout';
@@ -25,39 +26,48 @@ function Header() {
     }
 
     return (
-        <header className="header">
+        <header className={styles.header}>
 
             <Link to="/">
                 <div>
-                    <img src={logo} alt="Logo" />
+                    <img className={styles.logo} src={logo} alt="Logo" />
                 </div>
             </Link>
-            <form onSubmit={(e) => handleSearchSubmit(e)}>
+            <form
+                className={styles['search-form']}
+                onSubmit={(e) => handleSearchSubmit(e)}>
                 <input
-                    className="search-input"
+                    className={styles['search-input']}
                     value={query}
-                    type="text"
                     placeholder="Search . . ."
                     onChange={(e) => setQuery(e.target.value)}
                 />
                 {query && <button
+                    className={styles['cancel-btn']}
                     onClick={() => setQuery('')}>
-                    <i class="fa-solid fa-xmark"></i>
+                    <i className="fa-solid fa-xmark"></i>
                 </button>}
-                <button className="circle" type="submit">Search</button>
+                <button className={styles['search-btn']} type="submit">
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
             <nav>
                 {isAuthenticated ? (
-                    <>
-                        <Link to="/collected">Collected Cars</Link>
-                        <Link to="/wishlisted">Wishlisted Cars</Link>
-                        <button onClick={handleLogout}>Logout</button>
-                    </>
+                    <div>
+                        <i className="fa-solid fa-user"></i>
+                        <div>
+                            <Link to="/collected">Collected Cars</Link>
+                            <Link to="/wishlisted">Wishlisted Cars</Link>
+                            <button onClick={handleLogout}>Logout</button>
+                        </div>
+                    </div>
                 ) : (
-                    <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
-                    </>
+                    <Link to="/login">
+                        <button className={styles['login-btn']}>
+                            <i className="fa-solid fa-arrow-right"></i>
+                            <p>Log in</p>
+                        </button>
+                    </Link>
                 )}
             </nav>
         </header>
