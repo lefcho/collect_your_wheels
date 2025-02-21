@@ -17,6 +17,7 @@ $grey: rgb(82, 159, 159);
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    color: whitesmoke;
 }
 
 .search-form {
@@ -152,4 +153,23 @@ $grey: rgb(82, 159, 159);
       border-left: none;
     }
   }
-  
+
+.prof-cont {
+    position: relative;
+}
+
+.prof-button {
+    font-size: 1.5em;
+    color: whitesmoke;
+    background-color: transparent;
+    margin-right: 1em;
+}
+
+.prof-info-cont {
+    position: absolute;
+    left: -80px;
+    display: flex;
+    flex-direction: column;
+    background-color: orangered;
+    gap: 1em;
+}

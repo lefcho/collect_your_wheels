@@ -13,6 +13,7 @@ function Header() {
     const navigate = useNavigate();
 
     const [query, setQuery] = useState('');
+    const [showProfCont, setShowProfCont] = useState(true);
 
     const handleLogout = () => {
         logout();
@@ -53,13 +54,21 @@ function Header() {
             </form>
             <nav>
                 {isAuthenticated ? (
-                    <div>
-                        <i className="fa-solid fa-user"></i>
-                        <div>
+                    <div className={styles['prof-cont']}>
+                        <button 
+                            className={styles['prof-button']}
+                            onClick={() => 
+                            setShowProfCont(!showProfCont)}>
+                            <i className="fa-solid fa-user"></i>
+                        </button>
+                        {showProfCont && <div className={styles['prof-info-cont']}>
                             <Link to="/collected">Collected Cars</Link>
                             <Link to="/wishlisted">Wishlisted Cars</Link>
-                            <button onClick={handleLogout}>Logout</button>
-                        </div>
+                            <button onClick={handleLogout}>
+                                <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                                <p>Logout</p>
+                            </button>
+                        </div>}
                     </div>
                 ) : (
                     <Link to="/login">
