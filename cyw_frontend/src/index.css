@@ -17,5 +17,8 @@ a {
 }
 
 main {
+    padding: 2em;
+    background: rgb(213, 111, 42);
+    background: linear-gradient(90deg, rgba(213, 111, 42, 1) 28%, rgba(200, 94, 41, 1) 89%);
     flex: 1;
 }

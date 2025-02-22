@@ -4,12 +4,14 @@ import api from '../../api';
 import CarCard from '../../components/CarCard/CarCard';
 import Pagination from '../../components/Pagination/Pagination';
 import { collectedUrl } from '../../constants';
+import styles from './CollectedCars.module.scss';
 
 
 function CollectedCars() {
 
     const [cars, setCars] = useState([]);
     const [searchParam, setSearchParam] = useState('');
+    const [clickedGo, setClickedGo] = useState(false);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -61,6 +63,7 @@ function CollectedCars() {
 
     const handleSearchCollected = (e) => {
         e.preventDefault();
+        setClickedGo(true);
         const searchQuery = searchParam
             ? `?search=${encodeURIComponent(searchParam)}`
             : '';
@@ -73,26 +76,39 @@ function CollectedCars() {
         }
     };
 
+    const handleAnimationEnd = () => {
+        setClickedGo(false);
+      };
+    
+
     return (
         <div>
-            <h1>Collected Cars</h1>
-            <form >
-                <input
-                    type="text"
-                    placeholder="Search collected cars..."
-                    value={searchParam}
-                    onChange={(e) => setSearchParam(e.target.value)}
-                />
+            <div className={styles.head}>
+                <h1 className={styles.title}>Your Car <span>Collection</span></h1>
+                <form className={styles['car-form']}>
+                    <input
+                        className={styles['car-input']}
+                        type="text"
+                        placeholder="Search in collection..."
+                        value={searchParam}
+                        onChange={(e) => setSearchParam(e.target.value)}
+                    />
 
-                {searchParam && <button
-                    onClick={() => setSearchParam('')}>
-                    <i class="fa-solid fa-xmark"></i>
-                </button>}
-                <button
-                    onClick={(e) => handleSearchCollected(e)}>
-                    Search
-                </button>
-            </form>
+                    {searchParam && <button
+                        className={styles['car-x-btn']}
+                        type='reset'
+                        onClick={() => setSearchParam('')}>
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>}
+                    <button
+                        className={`${styles['car-go-btn']} ${clickedGo ? styles.clicked : ''}`}
+                        onAnimationEnd={handleAnimationEnd}
+                        type='submit'
+                        onClick={(e) => handleSearchCollected(e)}>
+                        <i className="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
 
             <div className='cars-container'>
                 {cars.map((car) => (
