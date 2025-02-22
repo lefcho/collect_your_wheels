@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/logout';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -12,6 +12,8 @@ function Header() {
     const [query, setQuery] = useState('');
     const [showProfCont, setShowProfCont] = useState(false);
 
+    const profRef = useRef(null);
+
     const handleLogout = () => {
         logout();
         setIsAuthenticated(false);
@@ -22,6 +24,18 @@ function Header() {
         e.preventDefault();
         navigate(`/results?search_query=${encodeURIComponent(query)}`);
     };
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (profRef.current && !profRef.current.contains(event.target)) {
+                setShowProfCont(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
         <header className={styles.header}>
@@ -53,7 +67,7 @@ function Header() {
             </form>
             <nav>
                 {isAuthenticated ? (
-                    <div className={styles['prof-cont']}>
+                    <div className={styles['prof-cont']} ref={profRef}>
                         <button
                             className={styles['prof-button']}
                             onClick={() => setShowProfCont((prev) => !prev)}
@@ -64,9 +78,9 @@ function Header() {
                             {showProfCont && (
                                 <motion.div
                                     className={styles['prof-info-cont']}
-                                    initial={{ opacity: 1, y: -50 }}
+                                    initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -50 }}
+                                    exit={{ opacity: 0, y: -10 }}
                                     transition={{ duration: 0.3 }}
                                 >
                                     <Link className={styles['icon-text']} to="/collected">
