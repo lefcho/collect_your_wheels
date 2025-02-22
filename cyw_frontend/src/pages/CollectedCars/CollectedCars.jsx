@@ -3,14 +3,13 @@ import React, { useState, useEffect } from 'react'
 import api from '../../api';
 import CarCard from '../../components/CarCard/CarCard';
 import Pagination from '../../components/Pagination/Pagination';
+import { collectedUrl } from '../../constants';
 
 
 function CollectedCars() {
 
-    const collectedUrl = '/api/collected-cars/';
-
     const [cars, setCars] = useState([]);
-    const [searchParam, setSearchParam] = useState(null);
+    const [searchParam, setSearchParam] = useState('');
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -80,10 +79,11 @@ function CollectedCars() {
             <form >
                 <input
                     type="text"
+                    placeholder="Search collected cars..."
                     value={searchParam}
                     onChange={(e) => setSearchParam(e.target.value)}
-                    placeholder='Search collected cars...'
                 />
+
                 {searchParam && <button
                     onClick={() => setSearchParam('')}>
                     <i class="fa-solid fa-xmark"></i>
@@ -107,8 +107,8 @@ function CollectedCars() {
                 ))}
             </div>
 
-            <Pagination 
-                prevPage={prevPage} 
+            <Pagination
+                prevPage={prevPage}
                 nextPage={nextPage}
                 loading={loading}
                 fetchCars={fetchCollectedCars}

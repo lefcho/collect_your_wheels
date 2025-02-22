@@ -109,7 +109,7 @@ $grey: rgb(82, 159, 159);
 }
 
 .login-btn {
-    position: relative; // enable pseudo-element positioning
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -120,10 +120,8 @@ $grey: rgb(82, 159, 159);
     margin-right: 1em;
     transition: color 0.3s ease-in-out;
   
-    // Remove the native border so we can use our animated pseudo-element
     border: none;
   
-    // Animate the arrow icon as before
     i {
       opacity: 0;
       transform: translateX(-10px);
@@ -170,27 +168,54 @@ $grey: rgb(82, 159, 159);
 }
 
 .prof-info-cont {
-    padding: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.5em;
     position: absolute;
-    left: -80px;
+    top: 50px;
+    left: -95px;
     display: flex;
     flex-direction: column;
-    background-color: orangered;
+    background-color: rgba(117, 50, 5);
     gap: 1em;
     border-radius: 6px;
 
     button {
+        color: whitesmoke;
         text-decoration: none;
         background-color: transparent;
+
+        
     }
 }
 
 .icon-text {
-
+    border-radius: 5px;
+    position: relative;
+    padding: 0.5em 0.3em;
     display: flex;
     gap: 0.5em;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
-        background-color: orange;
+        background-color: rgb(143, 65, 13);
+    }
+
+    button {
+        white-space: nowrap;
+        color: whitesmoke;
+    }
+}
+
+.add-before {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 120%;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: whitesmoke;
+        z-index: 1000;
     }
 }

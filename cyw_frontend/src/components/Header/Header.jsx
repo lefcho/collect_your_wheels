@@ -64,16 +64,20 @@ function Header() {
                         </button>
                         {showProfCont && <div
                             className={styles['prof-info-cont']}>
-                            <Link className={styles['icon-text']} to="/collected">
-                                <i class="fa-solid fa-car-on"></i>
+                            <Link 
+                                className={styles['icon-text']} 
+                                to="/collected">
+                                <i className="fa-solid fa-car"></i>
                                 <button>Collected Cars</button>
                             </Link>
-                            <Link className={styles['icon-text']} to="/wishlisted">
-                                <i class="fa-solid fa-car"></i>
+                            <Link 
+                                className={styles['icon-text']} 
+                                to="/wishlisted">
+                                <i className="fa-solid fa-car-on"></i>
                                 <button>Wishlisted Cars</button>
                             </Link>
                             <button
-                                className={styles['icon-text']}
+                                className={`${styles['icon-text']} ${styles['add-before']}`}
                                 onClick={handleLogout}>
                                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                 <p>Logout</p>
