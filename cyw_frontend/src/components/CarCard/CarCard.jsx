@@ -2,6 +2,7 @@
 import React from 'react'
 import CarActionButton from '../CarActionButton/CarActionButton'
 import { Link } from 'react-router-dom';
+import styles from './CarCard.module.scss';
 
 
 function CarCard(props) {
@@ -19,10 +20,44 @@ function CarCard(props) {
     const series = car.series;
 
     return (
-        <div className='car-card' dataid={car.id}>
-            <h3>
-                {car.model} <span>({car.toy_number})</span>
-                {isUserAuthenticated ?
+        <div className={styles['car-card']} dataid={car.id}>
+            <h3
+                className={`
+                ${styles['car-title']} 
+                ${car.is_treasure_hunt ? styles['treasure-hunt-bg'] : ''} 
+                ${car.is_super_treasure_hunt ? styles['s-treasure-hunt-bg'] : ''}
+            `}
+            >{car.model}
+                {car.is_treasure_hunt && <p
+                    className={styles['treasure-hunt-p']}>
+                    <i className="fa-solid fa-crown"></i>
+                </p>}
+                {car.is_super_treasure_hunt && <p
+                    className={styles['s-treasure-hunt-p']}>
+                    <i className="fa-solid fa-chess-king"></i>
+                </p>}
+            </h3>
+            <div className={styles['car-info-container']}>
+                <div className={styles['car-info']}>
+                    <p className={styles['info-title']}>ID:</p> 
+                    <p className={styles['info']}>{car.toy_number}</p>
+                </div>
+                <div className={styles['car-info']}>
+                    <p className={styles['info-title']}>Series</p> 
+                    <p className={styles['info']}>{car.series.title}</p>
+                </div>
+                <div className={styles['car-info']}>
+                    <p className={styles['info-title']}>Number in Series</p> 
+                    <p className={styles['info']}>
+                        {car.series_number}/<span>{series.number_of_cars}</span>
+                    </p>
+                </div>
+                <div className={styles['car-info']}>
+                    <p className={styles['info-title']}>Released</p> 
+                    <p className={styles['info']}>{car.series.year}</p>
+                </div>
+            </div>
+            {isUserAuthenticated ?
                     <div className="action-buttons">
                         <CarActionButton
                             onClick={car.is_collected ?
@@ -51,20 +86,6 @@ function CarCard(props) {
                         <Link to="/login">Collect</Link>
                     </div>
                 }
-            </h3>
-            {car.is_treasure_hunt && <p>Treasure Hunt</p>}
-            {car.is_super_treasure_hunt && <p>Super Treasure Hunt</p>}
-            <div>
-                <h4>
-                    <span>Series: </span>{series.title}
-                </h4>
-                <p>
-                    {car.series_number}/<span>{series.number_of_cars}</span>
-                </p>
-            </div>
-            <p>
-                <span>Year: </span>{series.year}
-            </p>
         </div>
     )
 }
