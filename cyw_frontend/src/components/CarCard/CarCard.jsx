@@ -3,6 +3,7 @@ import React from 'react'
 import CarActionButton from '../CarActionButton/CarActionButton'
 import { Link } from 'react-router-dom';
 import styles from './CarCard.module.scss';
+import { s } from 'framer-motion/client';
 
 
 function CarCard(props) {
@@ -58,7 +59,7 @@ function CarCard(props) {
                 </div>
             </div>
             {isUserAuthenticated ?
-                    <div className="action-buttons">
+                    <div className={styles['car-action-buttons']}> 
                         <CarActionButton
                             onClick={car.is_collected ?
                                 handleRemoveCollected :

@@ -12,6 +12,8 @@ function CarActionButton(props) {
         buttonClass 
     } = props;
 
+    const btnType = buttonClass;
+
     return (
         <button onClick={() => onClick(car_id)} className={buttonClass}>
             <i className={isActive ? iconActive : iconRegular}></i>
