@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import styles from './CarActionButton.module.scss';
 
 function CarActionButton(props) {
     const {
@@ -9,14 +9,15 @@ function CarActionButton(props) {
         iconRegular, 
         iconActive, 
         isActive, 
-        buttonClass 
+        buttonClass // collected-button or wishlisted-button
     } = props;
 
-    const btnType = buttonClass;
-
     return (
-        <button onClick={() => onClick(car_id)} className={buttonClass}>
+        <button 
+            onClick={() => onClick(car_id)} 
+            className={styles[buttonClass]}>
             <i className={isActive ? iconActive : iconRegular}></i>
+            <p>Collect</p>
         </button>
     );
 }

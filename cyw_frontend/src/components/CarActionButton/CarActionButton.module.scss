@@ -1,0 +1,7 @@
+.collected-button, .wishlisted-button{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 1em 0.5em;
+}
