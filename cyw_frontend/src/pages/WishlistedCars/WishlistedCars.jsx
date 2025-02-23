@@ -40,6 +40,32 @@ function WishlistedCars() {
         handleRemoveWishlisted(car_id);
     };
 
+    const handleRemoveCollected = (car_id) => {
+        api
+            .delete(`${collectedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map(car => {
+                        return car.id === car_id ? { ...car, is_collected: false } : car
+                    })
+                );
+            })
+            .catch((err) => alert(err));
+    };
+
+    const handleAddWishlisted = (car_id) => {
+        api.post(`${wishlistedUrl}${car_id}/`)
+            .then(() => {
+                setCars(prevCars =>
+                    prevCars.map((car) => {
+                        return car.id === car_id ?
+                            { ...car, is_wishlisted: true } :
+                            car
+                    })
+                )
+            })
+    };
+
     const handleRemoveWishlisted = (car_id) => {
         api.delete(`${wishlistedUrl}${car_id}/`)
             .then(() => {
@@ -97,6 +123,8 @@ function WishlistedCars() {
                     <CarCard
                         key={car.id}
                         car={car}
+                        handleRemoveCollected={() => handleRemoveCollected(car.id)}
+                        handleAddWishlisted={() => handleAddWishlisted(car.id)}
                         handleAddCollected={() => handleAddCollected(car.id)}
                         handleRemoveWishlisted={() => handleRemoveWishlisted(car.id)}
                         page='wishlisted'

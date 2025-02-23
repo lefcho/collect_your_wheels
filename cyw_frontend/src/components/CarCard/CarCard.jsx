@@ -69,7 +69,7 @@ function CarCard(props) {
                             iconActive="fa-solid fa-square-check"
                             isActive={car.is_collected}
                             buttonClass="collected-button"
-                            car_id={car.id}
+                            car={car}
                         />
                         {page !== 'collected' && <CarActionButton
                             onClick={car.is_wishlisted ?
@@ -80,7 +80,7 @@ function CarCard(props) {
                             iconActive="fa-solid fa-heart"
                             isActive={car.is_wishlisted}
                             buttonClass="wishlisted-button"
-                            car_id={car.id}
+                            car={car}
                         />}
                     </div> :
                     <div>

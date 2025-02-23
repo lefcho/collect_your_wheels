@@ -4,20 +4,27 @@ import styles from './CarActionButton.module.scss';
 
 function CarActionButton(props) {
     const {
-        car_id,
-        onClick, 
-        iconRegular, 
-        iconActive, 
-        isActive, 
+        car,
+        onClick,
+        iconRegular,
+        iconActive,
+        isActive,
         buttonClass // collected-button or wishlisted-button
     } = props;
 
     return (
-        <button 
-            onClick={() => onClick(car_id)} 
+        <button
+            onClick={() => onClick(car.id)}
             className={styles[buttonClass]}>
             <i className={isActive ? iconActive : iconRegular}></i>
-            <p>Collect</p>
+            {buttonClass === 'collected-button' ?
+                (car.is_collected ?
+                    <p>Collected</p> :
+                    <p>Collect</p>) :
+                (car.is_wishlisted ?
+                    <p>Wishlisted</p> :
+                    <p>Wishlist</p>)
+            }
         </button>
     );
 }
