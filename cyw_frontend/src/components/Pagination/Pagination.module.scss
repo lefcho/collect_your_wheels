@@ -1,0 +1,21 @@
+.pagination {
+    padding-top: 1em;
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+
+    button {
+        border: black 1px solid;
+        padding: 0.5em 1em;
+        background-color: transparent;
+        text-transform: uppercase;
+        transition: all 0.2s ease-in-out;
+        
+        &:hover {
+            background-color: black;
+            cursor: pointer;
+            color: aqua;
+        }
+    }
+}
+

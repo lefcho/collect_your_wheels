@@ -1,4 +1,7 @@
+
 import React from 'react'
+import styles from './Pagination.module.scss';
+
 
 function Pagination(props) {
 
@@ -12,7 +15,7 @@ function Pagination(props) {
 
 
     return (
-        <div className="pagination">
+        <div className={styles.pagination}>
             {prevPage && (
                 <button onClick={() => handlePageChange(prevPage)} disabled={loading}>
                     Previous

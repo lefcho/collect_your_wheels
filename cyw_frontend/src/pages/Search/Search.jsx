@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CarSearch from '../../components/CarSearch/CarSearch';
 import SeriesSearch from '../../components/SeriesSearch/SeriesSearch';
+import styles from './Search.module.scss';
+import { s } from 'framer-motion/client';
 
 
 function Search() {
@@ -14,13 +16,16 @@ function Search() {
 
     return (
         <div>
-            <h1>Search Results</h1>
-            {query && <div>
+            {query && <h1 className={styles.title}>
+                Searching for: <span>'{query}'</span></h1>}
+            {query && <div className={styles['button-container']}>
                 <button
+                    className={searchFor === 'cars' ? styles.active : styles.unactive}
                     onClick={() => setSearchFor('cars')}>
                     Cars
                 </button>
                 <button
+                    className={searchFor === 'series' ? styles.active : styles.unactive}
                     onClick={() => setSearchFor('series')}>
                     Series
                 </button>
@@ -28,7 +33,6 @@ function Search() {
             {
             query ?
                 <div>
-                    <h5>Results for: {query}</h5>
                     {
                     searchFor === 'cars' ?
                         <CarSearch query={query} />
