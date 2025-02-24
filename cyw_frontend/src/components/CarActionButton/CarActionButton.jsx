@@ -19,10 +19,10 @@ function CarActionButton(props) {
             <i className={isActive ? iconActive : iconRegular}></i>
             {buttonClass === 'collected-button' ?
                 (car.is_collected ?
-                    <p>Collected</p> :
+                    <p>Remove from collection</p> :
                     <p>Collect</p>) :
                 (car.is_wishlisted ?
-                    <p>Wishlisted</p> :
+                    <p>Undo wishlist</p> :
                     <p>Wishlist</p>)
             }
         </button>

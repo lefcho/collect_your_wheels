@@ -92,7 +92,7 @@ function WishlistedCars() {
     return (
         <div>
             <div className={styles.head}>
-                <h1 className={styles.title}>Your Wishlist <span>Cars</span></h1>
+                <h1 className={styles.title}>Your Wishlisted <span>Cars</span></h1>
                 <form className={styles['car-form']}>
                     <input
                         className={styles['car-input']}
