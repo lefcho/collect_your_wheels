@@ -97,7 +97,7 @@ function WishlistedCars() {
                     <input
                         className={styles['car-input']}
                         type="text"
-                        placeholder="Search in wishlist..."
+                        placeholder="Search in wishlisted"
                         value={searchParam}
                         onChange={(e) => setSearchParam(e.target.value)}
                     />

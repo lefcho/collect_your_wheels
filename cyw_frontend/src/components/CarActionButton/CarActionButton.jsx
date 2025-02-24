@@ -15,7 +15,8 @@ function CarActionButton(props) {
     return (
         <button
             onClick={() => onClick(car.id)}
-            className={styles[buttonClass]}>
+            className={`${styles[buttonClass]} ${isActive ? styles.active : ''}`}
+        >
             <i className={isActive ? iconActive : iconRegular}></i>
             {buttonClass === 'collected-button' ?
                 (car.is_collected ?
