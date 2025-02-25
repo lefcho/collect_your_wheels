@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-$colcected-color: #42500d;
+$colcected-color: #06a801;
 $uncollected-color: #7d807c;
 $wishlisted-color: #6b5499;
 $unwishlisted-color: #7d807c;
@@ -8,7 +8,7 @@ $unwishlisted-color: #7d807c;
 
 .collected-button,
 .wishlisted-button {
-    color: aqua;
+    color: rgb(0, 0, 0);
     font-family: "Roboto", serif;
     font-weight: 500;
     font-size: 0.8em;
