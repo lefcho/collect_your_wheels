@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
-import PasswordInput from '../PasswordInput';
+import PasswordInput from '../PasswordInput/PasswordInput';
 
 
 function RegisterForm() {

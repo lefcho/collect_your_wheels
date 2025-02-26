@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react';
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
-import PasswordInput from '../PasswordInput';
+import PasswordInput from '../PasswordInput/PasswordInput';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants';
 import { AuthContext } from '../../contexts/AuthContext';
 import styles from './LoginForm.module.scss';
@@ -82,7 +82,7 @@ function LoginForm() {
                 disabled={loading}
                 onClick={handleLogin}
             >
-                Log in
+                Login
             </button>
         </form>
     );
