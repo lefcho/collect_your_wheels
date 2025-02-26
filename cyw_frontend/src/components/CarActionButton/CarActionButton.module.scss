@@ -1,14 +1,16 @@
+
+@use '../../styles/variables' as v;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 $colcected-color: #06a801;
-$uncollected-color: #7d807c;
+$uncollected-color: v.$color-primary;
 $wishlisted-color: #6b5499;
-$unwishlisted-color: #7d807c;
+$unwishlisted-color: v.$color-primary;
 
 
 .collected-button,
 .wishlisted-button {
-    color: rgb(0, 0, 0);
+    color: v.$color-secondary;
     font-family: "Roboto", serif;
     font-weight: 500;
     font-size: 0.8em;
@@ -21,10 +23,10 @@ $unwishlisted-color: #7d807c;
     align-items: center;
     gap: 0.5em;
     padding: 1em 0.5em;
+    border-top: 2px solid v.$color-secondary;
 
     i {
         font-size: 1.5em;
-        color: rgb(68, 12, 12);
     }
 
     &:hover {
@@ -69,6 +71,7 @@ $unwishlisted-color: #7d807c;
 
 .wishlisted-button {
     background-color: $unwishlisted-color;
+    border-left: 2px solid v.$color-secondary;
 
     &::before {
         content: "";

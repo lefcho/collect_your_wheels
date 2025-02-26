@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../PasswordInput';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants';
 import { AuthContext } from '../../contexts/AuthContext';
+import styles from './LoginForm.module.scss';
 
 
 function LoginForm() {
@@ -47,17 +48,18 @@ function LoginForm() {
     };
 
     return (
-        <form className="form-container">
-            <h2>Login</h2>
+        <form className={styles.form}>
+            <h2 className={styles['form-title']}>Login</h2>
             <p>
                 Don't have an account? <span><a href="/register">Register</a></span>
             </p>
-            <div className="formData">
-                <div className="form-field">
+            <div className={styles["form-data"]}>
+                <div className={styles["form-field"]}>
+                    <i className="fa-solid fa-user"></i>
                     <input
                         type="text"
                         name="username"
-                        className="form-input"
+                        className={styles["form-input"]}
                         value={formData.username}
                         onChange={handleChange}
                         placeholder="Username"
@@ -65,17 +67,18 @@ function LoginForm() {
                     />
                 </div>
 
-                <PasswordInput 
+                <PasswordInput
                     name='password'
+                    className={styles["pass-input"]}
                     handleChange={handleChange}
                     formDataField={formData.password}
                     placeholder='Password'
                 />
 
             </div>
-            <button 
-                className="form-button" 
-                type="submit" 
+            <button
+                className={styles["form-button"]}
+                type="submit"
                 disabled={loading}
                 onClick={handleLogin}
             >

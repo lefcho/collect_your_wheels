@@ -7,6 +7,7 @@ function PasswordInput(props) {
 
     return (
         <div className="form-field password-field">
+            <i className="fa-solid fa-lock"></i>
             <input
                 type={isHidden ? 'password' : 'text'}
                 name={name}

@@ -1,3 +1,4 @@
+@use '../../styles/variables' as v;
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
@@ -7,7 +8,6 @@ $hover-info-c: rgb(41, 28, 16);
 .car-card {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -21,27 +21,27 @@ $hover-info-c: rgb(41, 28, 16);
 
 .car-title {
     font-family: "Roboto Slab", serif;
-    background: linear-gradient(60deg, rgba(69, 68, 67, 1) 11%, rgba(75, 57, 49, 1) 32%, rgba(80, 68, 64, 1) 57%, rgba(65, 53, 48, 1) 78%, rgba(64, 62, 61, 1) 90%);
-    color: aqua;
-    padding: 0.7em 0.5em;
+    background: v.$color-primary;
+    color: v.$color-secondary;
+    padding: 0.7rem 0.5rem;
     background-size: cover;
     text-align: center;
-    font-size: 1.4em;
+    font-size: 1.4rem;
     font-weight: 500;
-    gap: 0.7em;
+    gap: 0.7rem;
     display: flex;
     justify-content: center;
 }
 
 .treasure-hunt-bg {
-    font-size: 1.5em;
+    font-size: 1.4rem;
     font-family: "Oswald", serif;
     background: url('../../assets/gold_bg.svg') no-repeat center/cover;
-    color: #43340e;
+    color: hsl(120, 22%, 10%);
 }
 
 .s-treasure-hunt-bg {
-    font-size: 1.5em;
+    font-size: 1.4rem;
     font-family: "Oswald", serif;
     background: rgb(59, 21, 88);
     background: linear-gradient(69deg, rgba(59, 21, 88, 1) 12%,
@@ -53,7 +53,8 @@ $hover-info-c: rgb(41, 28, 16);
 }
 
 .car-info-container {
-    background-color: #43340e;
+    background: rgb(37, 37, 33);
+    background: linear-gradient(63deg, rgba(37, 37, 33, 1) 29%, rgba(24, 23, 27, 1) 63%, rgba(22, 21, 23, 1) 100%, rgba(38, 34, 42, 1) 100%);
 }
 
 .car-info {
@@ -66,7 +67,7 @@ $hover-info-c: rgb(41, 28, 16);
     }
 
     .info-title {
-        padding: 1em;
+        padding: 1rem;
         color: wheat;
         border-bottom: 1px solid $separate-border-c;
         transition: all 0.2s ease-in-out;
@@ -77,7 +78,7 @@ $hover-info-c: rgb(41, 28, 16);
     }
 
     .info {
-        padding: 1em;
+        padding: 1rem;
         color: white;
         border-bottom: 1px solid $separate-border-c;
         border-left: 1px solid $separate-border-c;

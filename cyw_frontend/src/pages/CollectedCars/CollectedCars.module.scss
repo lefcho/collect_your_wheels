@@ -1,3 +1,5 @@
+
+@use '../../styles/variables' as v;
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&display=swap');
 
@@ -10,8 +12,8 @@ $grey: rgb(82, 159, 159);
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 1em;
-    padding-bottom: 1em;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
 
 .title {
@@ -29,8 +31,7 @@ $grey: rgb(82, 159, 159);
     position: relative;
     background-color: transparent;
     color: whitesmoke;
-    border: 2px solid transparent;
-    border-radius: 3px;
+    border: 1px solid white;
     transition: all 0.2ss ease-in-out;
 
     &:hover {
@@ -40,29 +41,26 @@ $grey: rgb(82, 159, 159);
     &::before {
         content: "";
         position: absolute;
-        top: -1%;
+        top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        border: 1px solid $light-blue;
+        width: 0;
+        height: 90%;
+        border: 2px solid transparent;
         transition: all 0.2s ease-in-out;
         pointer-events: none;
     }
 
     &:focus-within::before {
-        border: 2px solid whitesmoke;
-    }
-
-    &:focus {
-        background-color: black;
+        width: 99%;
+        border: 2px solid white;
     }
 }
 
 .car-input {
-    width: 19em;
+    width: 19rem;
     background-color: transparent;
     color: white;
-    padding: 0.5em;
+    padding: 0.5rem;
     font-size: 1rem;
     font-family: "Noto Sans Hanunoo", serif;
 
@@ -105,7 +103,7 @@ $grey: rgb(82, 159, 159);
 .car-x-btn {
     position: absolute;
     background-color: transparent;
-    font-size: 1.4em;
+    font-size: 1.4rem;
     top: 22%;
     left: 80%;
     transition: all 0.2s ease-in-out;
@@ -121,8 +119,8 @@ $grey: rgb(82, 159, 159);
     position: absolute;
     left: 88%;
     top: 22%;
-    padding-right: 0.3em;
-    font-size: 1.3em;
+    padding-right: 0.3rem;
+    font-size: 1.3rem;
     background-color: transparent;
     border: none;
     transition: all 0.2s ease-in-out;
