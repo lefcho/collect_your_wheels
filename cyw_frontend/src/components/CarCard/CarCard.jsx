@@ -23,6 +23,11 @@ function CarCard(props) {
         expanded: { height: 'auto', opacity: 1 }
     }
 
+    const caretVariants = {
+        collapsed: { rotate: 0 },
+        expanded: { rotate: 180 }
+    };
+
     return (
         <div className={styles['car-card']} dataid={car.id}>
             <h3
@@ -45,6 +50,12 @@ function CarCard(props) {
                         <i className="fa-solid fa-chess-king"></i>
                     </p>
                 )}
+            <motion.i
+                className={`fa-solid fa-caret-down ${styles['caret']}`}
+                animate={isFolded ? 'collapsed' : 'expanded'}
+                variants={caretVariants}
+                transition={{ duration: 0.2 }}
+            />
             </h3>
             <AnimatePresence initial={false}>
                 {!isFolded && (

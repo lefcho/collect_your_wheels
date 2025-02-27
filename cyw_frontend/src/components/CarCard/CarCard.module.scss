@@ -23,6 +23,7 @@ $uncollected-color: v.$color-primary;
 }
 
 .car-title {
+    position: relative;
     font-family: "Roboto Slab", serif;
     background: v.$color-primary;
     color: v.$color-secondary;
@@ -34,6 +35,12 @@ $uncollected-color: v.$color-primary;
     gap: 0.7rem;
     display: flex;
     justify-content: center;
+
+    .caret {
+        position: absolute;
+        top: 30%;
+        right: 15px;
+    }
 }
 
 .treasure-hunt-bg {

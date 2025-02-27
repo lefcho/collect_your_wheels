@@ -6,6 +6,7 @@ import Pagination from '../Pagination/Pagination';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext, useState, useEffect } from 'react';
 import { collectedUrl, searchCarsUrl, wishlistedUrl } from '../../constants';
+import styles from './CarSearch.module.scss';
 
 
 function CarSearch(props) {
@@ -99,7 +100,7 @@ function CarSearch(props) {
     }
 
     return (
-        <div className='cars-container'>
+        <div className={styles['cars-container']}>
             {cars.map((car) => (
                 <CarCard
                     key={car.id}

@@ -4,12 +4,12 @@ import api from '../../api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Pagination from '../Pagination/Pagination';
 import FoldingSeries from '../FoldingSeries/FoldingSeries';
+import { searchSeriesUrl } from '../../constants';
+
 
 function SeriesSearch(props) {
 
     const { query } = props;
-
-    const searchSeriesUrl = '/api/search-series/';
     const wishlistedUrl = '/api/wishlisted-cars/';
     const collectedUrl = '/api/collected-cars/';
 

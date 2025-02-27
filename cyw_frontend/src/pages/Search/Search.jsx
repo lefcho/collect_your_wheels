@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 import CarSearch from '../../components/CarSearch/CarSearch';
 import SeriesSearch from '../../components/SeriesSearch/SeriesSearch';
 import styles from './Search.module.scss';
-import { s } from 'framer-motion/client';
 
 
 function Search() {
