@@ -35,6 +35,10 @@ $uncollected-color: v.$color-primary;
     gap: 0.7rem;
     display: flex;
     justify-content: center;
+    
+    .title-text {
+        width: 90%;
+    }
 
     .caret {
         position: absolute;

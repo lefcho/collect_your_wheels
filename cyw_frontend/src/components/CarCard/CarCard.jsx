@@ -39,7 +39,7 @@ function CarCard(props) {
         `}
                 style={{ cursor: 'pointer' }}
             >
-                {car.model}
+                <p className={styles['title-text']}>{car.model}</p>
                 {car.is_treasure_hunt && (
                     <p className={styles['treasure-hunt-p']}>
                         <i className="fa-solid fa-crown"></i>
