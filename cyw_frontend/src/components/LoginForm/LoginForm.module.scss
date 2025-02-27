@@ -1,4 +1,7 @@
 @use '../../styles/variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 
 .form {
@@ -10,12 +13,16 @@
     margin: 0 auto;
     background-color: v.$color-primary;
     border-radius: 2px;
+    -webkit-box-shadow: 10px 10px 21px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 21px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 21px -3px rgba(0, 0, 0, 0.75);
 
     p {
-        font-size: 0.9rem;
+        font-family: "Roboto", sans-serif;
+        font-size: 0.8rem;
         color: v.$color-secondary-lower;
-        padding: 0.3rem;
-        padding-bottom: 0.5rem;
+        padding: 0.5rem;
+        border-top: 1px solid v.$color-tertiary;
 
         a {
             color: v.$color-accent;
@@ -30,14 +37,16 @@
 }
 
 .form-title {
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
     border-radius: 2px;
     text-align: center;
     width: 100%;
     color: v.$color-primary;
     background-color: v.$color-tertiary;
-    text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
 }
 
 .form-data {
@@ -54,7 +63,7 @@
 
     i {
         padding: 0.5rem;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         background-color: v.$color-tertiary;
         color: v.$color-primary;
         border-radius: 2px 0 0 2px;
@@ -62,6 +71,7 @@
 }
 
 .form-input {
+    color: v.$color-secondary;
     padding: 0.5rem;
     margin: 0;
     font-size: 1rem;
@@ -74,15 +84,19 @@
 }
 
 .form-button {
-    width: 82%;
+    color: v.$color-tertiary;
+    font-family: "Roboto", sans-serif;
+    width: 50%;
     padding: 0.5rem 0;
     margin: 1rem 0;
     border-radius: 4px;
-    background-color: v.$color-tertiary;
+    background-color: transparent;
+    border: 1px solid v.$color-tertiary;
     font-weight: 600;
-    transition: all 0.2s ease-in-out; 
+    transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: v.$placeholder-color;
+        color: v.$color-primary;
+        background-color: v.$color-tertiary;
     }
 }

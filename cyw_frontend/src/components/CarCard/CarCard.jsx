@@ -100,8 +100,8 @@ function CarCard(props) {
                     )}
                 </div>
             ) : (
-                <div>
-                    <Link to="/login">Collect</Link>
+                <div className={styles['logged-out-collect']}>
+                    <Link to="/login">Start Collecting</Link>
                 </div>
             )}
         </div>

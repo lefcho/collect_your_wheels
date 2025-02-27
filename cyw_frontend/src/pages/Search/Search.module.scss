@@ -3,7 +3,7 @@
 $selected-color: rgb(249, 254, 255);
 
 .title {
-    font-size: 2em;
+    font-size: 2rem;
     font-family: "Josefin Sans", serif;
 
     span {
@@ -14,16 +14,16 @@ $selected-color: rgb(249, 254, 255);
 .button-container {
     display: flex;
     align-items: center;
-    padding: 0.5em 0;
-    margin-bottom: 0.5em;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
 
     button {
         cursor: pointer;
         width: 20%;
         text-transform: uppercase;
-        padding: 0.5em;
+        padding: 0.5rem;
         font-weight: 600;
-        font-size: 1.1em;
+        font-size: 1.1rem;
         background-color: transparent;
         border: 1px solid black;
 

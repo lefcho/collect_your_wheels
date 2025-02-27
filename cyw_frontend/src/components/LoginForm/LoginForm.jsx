@@ -50,9 +50,6 @@ function LoginForm() {
     return (
         <form className={styles.form}>
             <h2 className={styles['form-title']}>Login</h2>
-            <p>
-                Don't have an account? <span><a href="/register">Register</a></span>
-            </p>
             <div className={styles["form-data"]}>
                 <div className={styles["form-field"]}>
                     <i className="fa-solid fa-user"></i>
@@ -84,6 +81,10 @@ function LoginForm() {
             >
                 Login
             </button>
+
+            <p>
+                Don't have an account? <span><a href="/register">Register</a></span>
+            </p>
         </form>
     );
 }

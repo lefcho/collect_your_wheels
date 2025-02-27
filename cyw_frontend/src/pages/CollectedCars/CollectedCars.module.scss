@@ -56,6 +56,12 @@ $grey: rgb(82, 159, 159);
     }
 }
 
+.cars-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .car-input {
     width: 19rem;
     background-color: transparent;

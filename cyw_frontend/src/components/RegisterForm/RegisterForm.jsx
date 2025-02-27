@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../PasswordInput/PasswordInput';
+import styles from './RegisterForm.module.scss';
 
 
 function RegisterForm() {
@@ -59,55 +60,57 @@ function RegisterForm() {
     // }
 
     return (
-        <form className="form-container">
-            <h2>Create an account</h2>
-            <p>
-                Already have an account? <span><a href="/login">Log in</a></span>
-            </p>
-            <div className="formData">
-                <div className="form-field">
+        <form className={styles.form}>
+            <h2 className={styles['form-title']}>Create an account</h2>
+            <div className={styles["form-data"]}>
+                <div className={styles["form-field"]}>
+                    <i className="fa-solid fa-user"></i>
                     <input
                         type="text"
                         name="username"
-                        className="form-input"
+                        className={styles["form-input"]}
                         value={formData.username}
                         onChange={handleChange}
                         placeholder="Username"
                         required
                     />
                 </div>
-                <div className="form-field">
+                <div className={styles["form-field"]}>
+                    <i className="fa-solid fa-envelope"></i>
                     <input
                         type="text"
                         name="email"
-                        className="form-input"
+                        className={styles["form-input"]}
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Email"
                         required
                     />
                 </div>
-                <PasswordInput 
+                <PasswordInput
                     name='password'
                     handleChange={handleChange}
                     formDataField={formData.password}
                     placeholder='Password'
                 />
-                <PasswordInput 
+                <PasswordInput
                     name='repeatedPassword'
                     handleChange={handleChange}
                     formDataField={formData.repeatedPassword}
                     placeholder='Repeat Password'
                 />
             </div>
-            <button 
-                className="form-button" 
-                type="submit" 
+            <button
+                className={styles["form-button"]}
+                type="submit"
                 disabled={loading}
                 onClick={handleRegister}
             >
                 Create Account
             </button>
+            <p>
+                Already have an account? <span><a href="/login">Log in</a></span>
+            </p>
         </form>
     );
 }

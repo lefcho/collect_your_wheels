@@ -110,7 +110,7 @@ function CollectedCars() {
                 </form>
             </div>
 
-            <div className='cars-container'>
+            <div className={styles['cars-container']}>
                 {cars.map((car) => (
                     <CarCard
                         key={car.id}
