@@ -1,19 +1,15 @@
 
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../api';
-import { AuthContext } from '../../contexts/AuthContext';
 import Pagination from '../Pagination/Pagination';
-import FoldingSeries from '../FoldingSeries/FoldingSeries';
 import { searchSeriesUrl } from '../../constants';
+import SeriesCard from '../SeriesCard/SeriesCard';
+
 
 
 function SeriesSearch(props) {
 
     const { query } = props;
-    const wishlistedUrl = '/api/wishlisted-cars/';
-    const collectedUrl = '/api/collected-cars/';
-
-    const { isAuthenticated } = useContext(AuthContext);
 
     const [series, setSeries] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -43,10 +39,9 @@ function SeriesSearch(props) {
     return (
         <div>
             {series.map((series) => {
-                return <FoldingSeries
-                    key={series.id}
-                    series={series}
-                />
+                return (
+                    <SeriesCard series={series} key={series.id}/>
+                )
             })}
         </div>
     )

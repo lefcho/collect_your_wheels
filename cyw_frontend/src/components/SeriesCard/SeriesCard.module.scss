@@ -1,0 +1,42 @@
+@use '../../styles/variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+
+.series-card {
+    font-family: "Roboto Slab", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: v.$color-secondary;
+    max-width: 500px;
+    background-color: v.$color-primary;
+    -webkit-box-shadow: 10px 10px 21px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 21px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 21px -3px rgba(0, 0, 0, 0.75);
+    margin: 1.3rem 0;
+    padding: 1rem;
+
+}
+
+.series-info {
+    font-size: 0.95rem;
+    color: v.$color-secondary-lower;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.view-btn {
+    width: fit-content;
+    color: v.$color-secondary;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid v.$color-secondary;
+    transition: all 0.2s ease-in-out;
+    margin-top: 1rem;
+
+    &:hover {
+        background-color: v.$color-tertiary;
+        color: v.$color-primary;
+    }
+}
