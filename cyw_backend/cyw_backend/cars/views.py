@@ -113,7 +113,7 @@ class SearchCarsListView(generics.ListAPIView):
         DjangoFilterBackend,
     ]
     search_fields = ['toy_number', 'model', 'series__title',]
-    filterset_fields = ['series__title',]
+    filterset_fields = ['series__title', 'series__slug',]
 
 
 

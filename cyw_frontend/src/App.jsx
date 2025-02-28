@@ -30,7 +30,7 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<RegisterAndLogout />} />
                         <Route path='/results' element={<Search />} />
-                        <Route path='/series' element={<CarSeries />}/>
+                        <Route path='/series/:slug' element={<CarSeries />}/>
                         <Route path='/collected' element={
                             <ProtectedRoute>
                                 <CollectedCars />

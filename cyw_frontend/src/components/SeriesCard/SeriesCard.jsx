@@ -1,8 +1,11 @@
 
+import { useNavigate } from 'react-router-dom';
 import styles from './SeriesCard.module.scss'
 
 function SeriesCard(props) {
     const { series } = props;
+
+    const navigate = useNavigate();
 
     return (
         <div className={styles['series-card']}>
@@ -14,7 +17,9 @@ function SeriesCard(props) {
                     <p>{series.number_of_cars} cars</p>
                 </div>
             </div>
-            <button className={styles['view-btn']}>
+            <button 
+                onClick={() => navigate(`/series/${series.slug}`)}
+                className={styles['view-btn']}>
                 View Cars
             </button>
         </div>
