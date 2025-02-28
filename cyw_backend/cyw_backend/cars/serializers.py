@@ -6,7 +6,6 @@ from cyw_backend.utils import ReadOnlyModelSerializer
 
 
 class CarSerializer(ReadOnlyModelSerializer):
-    series = SeriesSerializer(read_only=True)
     is_collected = serializers.SerializerMethodField()
     is_wishlisted = serializers.SerializerMethodField()
 
@@ -25,3 +24,7 @@ class CarSerializer(ReadOnlyModelSerializer):
         if request and request.user and request.user.is_authenticated:
             return request.user.wishlisted_cars.filter(pk=obj.pk).exists()
         return False
+
+
+class CarWithSeriesSerializer(CarSerializer):
+    series = SeriesSerializer(read_only=True)

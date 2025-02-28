@@ -5,11 +5,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from cyw_backend.cars.models import Car
-from cyw_backend.cars.serializers import CarSerializer
+from cyw_backend.cars.serializers import CarWithSeriesSerializer
 
 
 class CollectedCarsListView(generics.ListAPIView):
-    serializer_class = CarSerializer
+    serializer_class = CarWithSeriesSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [
         filters.SearchFilter,
@@ -57,7 +57,7 @@ class CollectedCarCreateDestroyView(APIView):
 
 
 class WishlistedCarsListView(generics.ListAPIView):
-    serializer_class = CarSerializer
+    serializer_class = CarWithSeriesSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [
         filters.SearchFilter,
@@ -106,7 +106,7 @@ class WishlistedCarsCreateDestroyView(APIView):
 
 class SearchCarsListView(generics.ListAPIView):
     permission_classes = [AllowAny]
-    serializer_class = CarSerializer
+    serializer_class = CarWithSeriesSerializer
     queryset = Car.objects.all()
     filter_backends = [
         filters.SearchFilter,
