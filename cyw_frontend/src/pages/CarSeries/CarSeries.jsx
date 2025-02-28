@@ -1,7 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../api';
-import CarCard from '../../components/CarCard/CarCard';
+import SmallCarCard from '../../components/SmallCarCard/SmallCarCard';
+import styles from './CarSeries.module.scss';
+
 
 function CarSeries() {
     const { slug } = useParams();
@@ -46,14 +49,14 @@ function CarSeries() {
     if (!series) return null;
 
     return (
-        <div>
+        <div className={styles['car-series-cont']}>
             <h1>{series.title}</h1>
             {loadingCars ? (
                 <div>Loading...</div>
             ) : (
-                <div className="cars-container">
+                <div className={styles["cars-container"]}>
                     {cars.map((car) => (
-                        <CarCard key={car.id} car={car} />
+                        <SmallCarCard key={car.id} car={car} />
                     ))}
                 </div>
             )}
