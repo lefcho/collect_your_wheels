@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.text import slugify
 
 
 class Series(models.Model):
@@ -25,6 +26,11 @@ class Series(models.Model):
         verbose_name='Number of cars',
     )
 
+    slug = models.SlugField(
+        unique=True,
+        verbose_name='Slug',
+    )
+
     image_url = models.URLField(
         verbose_name='Image URL',
         null=True,
@@ -34,6 +40,11 @@ class Series(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True,
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

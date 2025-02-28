@@ -1,3 +1,4 @@
+
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/logout';
@@ -5,6 +6,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../assets/logo.svg';
 import styles from './Header.module.scss';
+
 
 function Header() {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);

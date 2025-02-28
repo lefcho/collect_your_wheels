@@ -16,3 +16,12 @@ class SearchSeriesListView(generics.ListAPIView):
     ]
     search_fields = ['title', 'year',]
     filterset_fields = ['year',]
+
+
+class SeriesDetailView(generics.RetrieveAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = SeriesSerializer
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        return Series.objects.all()

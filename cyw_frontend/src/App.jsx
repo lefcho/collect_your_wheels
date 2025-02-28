@@ -11,6 +11,7 @@ import WishlistedCars from './pages/WishlistedCars/WishlistedCars';
 import Search from './pages/Search/Search';
 import Layout from './components/Layout';
 import { AuthProvider } from './contexts/AuthContext.jsx'
+import CarSeries from './pages/CarSeries/CarSeries.jsx';
 
 
 function RegisterAndLogout() {
@@ -29,6 +30,7 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<RegisterAndLogout />} />
                         <Route path='/results' element={<Search />} />
+                        <Route path='/series' element={<CarSeries />}/>
                         <Route path='/collected' element={
                             <ProtectedRoute>
                                 <CollectedCars />
