@@ -3,7 +3,7 @@ from cyw_scraper.items import CarItem
 
 
 class WheelsSpider(scrapy.Spider):
-    year = '2013'
+    year = '2012'
     allowed_domains = ["hotwheels.fandom.com"]
     name = "cyw-scraper"
     start_urls = [
