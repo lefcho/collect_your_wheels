@@ -1,0 +1,76 @@
+@use '../../styles/variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+
+.sm-car-card {
+    color: v.$color-secondary;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+}
+
+.car-info {
+    font-family: "Raleway", sans-serif;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    
+    p {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.series-number {
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-right: 1px solid v.$color-secondary;
+    color: v.$color-secondary-lower;
+    padding: 0.4rem 0 ;
+    padding-right: 0.5rem;
+}
+
+.toy-number {
+    color: v.$color-accent;
+}
+
+.treasure-hunt, .super-treasure-hunt {
+    font-family: "Madimi One", sans-serif;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    margin-top: 0.1rem;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    width: fit-content;
+    border-radius: 100px;
+}
+
+.treasure-hunt {
+    background-color: gold;
+}
+
+.super-treasure-hunt {
+    background-color: rgb(105, 91, 177);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    button {
+        background-color: v.$color-primary;
+    }
+}
+
+.button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    background-color: v.$color-primary;
+
+    i {
+        background-color: v.$color-primary;
+    }
+}
