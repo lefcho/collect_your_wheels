@@ -15,7 +15,7 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    
+
     p {
         font-size: 1rem;
         font-weight: 600;
@@ -27,7 +27,7 @@
     font-weight: 500;
     border-right: 1px solid v.$color-secondary;
     color: v.$color-secondary-lower;
-    padding: 0.4rem 0 ;
+    padding: 0.4rem 0;
     padding-right: 0.5rem;
 }
 
@@ -35,7 +35,8 @@
     color: v.$color-accent;
 }
 
-.treasure-hunt, .super-treasure-hunt {
+.treasure-hunt,
+.super-treasure-hunt {
     font-family: "Madimi One", sans-serif;
     font-size: 0.9rem;
     margin-left: 1rem;
@@ -62,8 +63,13 @@
 
     button {
         background-color: v.$color-primary;
+
+        &:nth-child(2) {
+            color: hsl(0, 60%, 50%);
+        }
     }
 }
+
 
 .button {
     cursor: pointer;
