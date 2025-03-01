@@ -1,17 +1,28 @@
+
 import React, { useState, useEffect } from 'react';
 import api from '../../api';
 import CarCard from '../../components/CarCard/CarCard';
 import Pagination from '../../components/Pagination/Pagination';
-import { collectedUrl, wishlistedUrl } from '../../constants';
+import { wishlistedUrl } from '../../constants';
 import styles from './WishlistedCars.module.scss';
+import useCarActions from '../../hooks/useCarActions';
+
 
 function WishlistedCars() {
+
     const [cars, setCars] = useState([]);
     const [searchParam, setSearchParam] = useState('');
     const [clickedGo, setClickedGo] = useState(false);
     const [nextPage, setNextPage] = useState(null);
     const [prevPage, setPrevPage] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const {
+        handleAddCollected,
+        handleRemoveCollected,
+        handleAddWishlisted,
+        handleRemoveWishlisted,
+    } = useCarActions(setCars);
 
     useEffect(() => {
         fetchWishlistedCars();
@@ -28,54 +39,6 @@ function WishlistedCars() {
             })
             .catch((err) => alert(err));
         setLoading(false);
-    };
-
-    const handleAddCollected = (car_id) => {
-        api.post(`${collectedUrl}${car_id}/`)
-            .then(() => {
-                setCars(prevCars => prevCars.filter(car => car.id !== car_id));
-            })
-            .catch((err) => alert(err));
-
-        handleRemoveWishlisted(car_id);
-    };
-
-    const handleRemoveCollected = (car_id) => {
-        api
-            .delete(`${collectedUrl}${car_id}/`)
-            .then(() => {
-                setCars(prevCars =>
-                    prevCars.map(car => {
-                        return car.id === car_id ? { ...car, is_collected: false } : car
-                    })
-                );
-            })
-            .catch((err) => alert(err));
-    };
-
-    const handleAddWishlisted = (car_id) => {
-        api.post(`${wishlistedUrl}${car_id}/`)
-            .then(() => {
-                setCars(prevCars =>
-                    prevCars.map((car) => {
-                        return car.id === car_id ?
-                            { ...car, is_wishlisted: true } :
-                            car
-                    })
-                )
-            })
-    };
-
-    const handleRemoveWishlisted = (car_id) => {
-        api.delete(`${wishlistedUrl}${car_id}/`)
-            .then(() => {
-                setCars(prevCars =>
-                    prevCars.map(car =>
-                        car.id === car_id ? { ...car, is_wishlisted: false } : car
-                    )
-                );
-            })
-            .catch((err) => alert(err));
     };
 
     const handleSearch = (e) => {
