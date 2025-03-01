@@ -68,6 +68,8 @@ function CarSeries() {
                 <div>
                     <h1>{series.title}</h1>
                     <div className={styles['series-info']}>
+                        <p>{series.year}</p>
+                        <p>&#x2022;</p>
                         <p>{series.number_of_cars} <span>Unique</span> cars</p>
                         <p>&#x2022;</p>
                         <p>{cars.length} <span>Total</span> cars</p>
