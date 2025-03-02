@@ -44,33 +44,41 @@ function SmallCarCard(props) {
             </div>
             {isAuthenticated ?
                 <div className={styles["action-buttons"]}>
-                    <button>
-                        {car.is_collected ?
-                            <span
-                                className={styles.button}
-                                onClick={() => handleRemoveCollected(car.id)}>
-                                <i className="fa-solid fa-square-check"></i>
-                            </span> :
-                            <span
-                                className={styles.button}
-                                onClick={() => handleAddCollected(car.id)}>
-                                <i className="fa-regular fa-square-check"></i>
-                            </span>
-                        }
-                    </button>
-                    <button>
-                        {car.is_wishlisted ?
-                            <span
-                                className={styles.button}
-                                onClick={() => handleRemoveWishlisted(car.id)}>
-                                <i className="fa-solid fa-heart"></i>
-                            </span> :
-                            <span
-                                className={styles.button}
-                                onClick={() => handleAddWishlisted(car.id)}>
-                                <i className="fa-regular fa-heart"></i>
-                            </span>}
-                    </button>
+                    {car.is_collected ? (
+                        <button
+                            onClick={() => handleRemoveCollected(car.id)}>
+                            <i
+                                className={`${styles.button} fa-solid fa-square-check`}
+
+                            ></i>
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => handleAddCollected(car.id)}>
+                            <i
+                                className={`${styles.button} fa-regular fa-square-check`}
+
+                            ></i>
+                        </button>
+                    )}
+
+                    {car.is_wishlisted ? (
+                        <button
+                            onClick={() => handleRemoveWishlisted(car.id)}>
+                            <i
+                                className={`${styles.button} fa-solid fa-heart`}
+                            ></i>
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => handleAddWishlisted(car.id)}>
+                            <i
+                                className={`${styles.button} fa-regular fa-heart`}
+
+                            ></i>
+                        </button>
+                    )}
+
                 </div> :
                 <div>
                     <Link to="/login">Collect</Link>
