@@ -80,7 +80,7 @@ function SmallCarCard(props) {
                     )}
 
                 </div> :
-                <div>
+                <div className={styles['collect-btn']}>
                     <Link to="/login">Collect</Link>
                 </div>
             }

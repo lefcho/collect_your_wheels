@@ -14,7 +14,7 @@ function Search() {
     const [searchFor, setSearchFor] = useState('cars');
 
     return (
-        <div>
+        <div className='main-cont'>
             {query && <h1 className={styles.title}>
                 Searching for: <span>'{query}'</span></h1>}
             {query && <div className={styles['button-container']}>

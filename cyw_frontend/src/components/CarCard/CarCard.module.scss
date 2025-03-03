@@ -8,6 +8,7 @@ $colcected-color: hsl(118, 100%, 30%);
 $uncollected-color: v.$color-primary;
 
 .car-card {
+    min-width: 360px;
     max-width: 400px;
     display: flex;
     flex-direction: column;
