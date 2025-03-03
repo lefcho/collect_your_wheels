@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status, filters
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -108,6 +109,8 @@ class SearchCarsListView(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = CarWithSeriesSerializer
     queryset = Car.objects.all()
+    pagination_class = PageNumberPagination
+    page_size = 100
     filter_backends = [
         filters.SearchFilter,
         DjangoFilterBackend,
