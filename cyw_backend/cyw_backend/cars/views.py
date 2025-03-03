@@ -9,6 +9,10 @@ from cyw_backend.cars.models import Car
 from cyw_backend.cars.serializers import CarWithSeriesSerializer
 
 
+class CustomPagination(PageNumberPagination):
+    page_size = 100
+
+
 class CollectedCarsListView(generics.ListAPIView):
     serializer_class = CarWithSeriesSerializer
     permission_classes = [IsAuthenticated]
@@ -109,14 +113,14 @@ class SearchCarsListView(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = CarWithSeriesSerializer
     queryset = Car.objects.all()
-    pagination_class = PageNumberPagination
-    page_size = 100
+    pagination_class = CustomPagination 
     filter_backends = [
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
     search_fields = ['toy_number', 'model', 'series__title',]
     filterset_fields = ['series__title', 'series__slug',]
+
 
 
 
