@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react'
 import CarActionButton from '../CarActionButton/CarActionButton'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './CarCard.module.scss'
+
 
 function CarCard(props) {
     const {
@@ -17,6 +19,7 @@ function CarCard(props) {
 
     const series = car.series
     const [isFolded, setIsFolded] = useState(true);
+    const navigate = useNavigate();
 
     const contentVariants = {
         collapsed: { height: 0, opacity: 0.8 },
@@ -74,7 +77,9 @@ function CarCard(props) {
                         </div>
                         <div className={styles['car-info']}>
                             <p className={styles['info-title']}>Series</p>
-                            <p className={styles['info']}>{series.title}</p>
+                            <p 
+                                onClick={() => navigate(`/series/${series.slug}`)}
+                                className={`${styles['info']} ${styles['series-tiile']}`}>{series.title}</p>
                         </div>
                         <div className={styles['car-info']}>
                             <p className={styles['info-title']}>Number in Series</p>

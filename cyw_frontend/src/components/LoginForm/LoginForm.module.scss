@@ -95,7 +95,7 @@
     font-weight: 600;
     transition: all 0.2s ease-in-out;
 
-    &:hover {
+    &:hover, &:focus-within {
         color: v.$color-primary;
         background-color: v.$color-tertiary;
     }

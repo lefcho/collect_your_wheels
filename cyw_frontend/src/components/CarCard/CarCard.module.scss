@@ -171,3 +171,11 @@ $uncollected-color: v.$color-primary;
         background-color: $uncollected-color;
     }
 }
+
+.series-tiile {
+    cursor: pointer;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
