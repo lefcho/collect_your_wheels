@@ -1,9 +1,15 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import videoBg from '../../assets/videoBg.mp4';
 import styles from './Home.module.scss';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+
 
 function Home() {
+
+    const { isAuthenticated } = useContext(AuthContext);
+
     return (
         <div className={styles.home}>
             <div className={styles.overlay}></div>
@@ -13,9 +19,19 @@ function Home() {
             </video>
             <div className={styles['text-content']}>
                 <h1>Collect Your Wheels</h1>
-                <button className={styles['welcome-btn']}>
-                    Start Collecting
-                </button>
+                {isAuthenticated ?
+                    <button className={styles['welcome-btn']}>
+                        <Link to={{ pathname:"/collected" }}>
+                            Your Car Collection
+                        </Link>
+                    </button> :
+                    <button
+                        className={styles['welcome-btn']}>
+                        <Link to={{ pathname:"/login" }}>
+                            Start Collecting
+                        </Link>
+                    </button>
+                }
             </div>
         </div>
     );
