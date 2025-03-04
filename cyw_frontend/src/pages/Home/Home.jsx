@@ -20,17 +20,17 @@ function Home() {
             <div className={styles['text-content']}>
                 <h1>Collect Your Wheels</h1>
                 {isAuthenticated ?
-                    <button className={styles['welcome-btn']}>
-                        <Link to={{ pathname:"/collected" }}>
+                    <Link to={{ pathname: "/collected" }}>
+                        <button className={styles['welcome-btn']}>
                             Your Car Collection
-                        </Link>
-                    </button> :
-                    <button
-                        className={styles['welcome-btn']}>
-                        <Link to={{ pathname:"/login" }}>
+                        </button>
+                    </Link> :
+                    <Link to={{ pathname: "/login" }}>
+                        <button
+                            className={styles['welcome-btn']}>
                             Start Collecting
-                        </Link>
-                    </button>
+                        </button>
+                    </Link>
                 }
             </div>
         </div>
