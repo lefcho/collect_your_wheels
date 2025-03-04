@@ -4,7 +4,7 @@
 .logo {
     width: 70px;
     height: auto;
-    margin: 0rem 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .header {
@@ -17,6 +17,16 @@
     justify-content: space-between;
     align-items: center;
     color: v.$color-secondary;
+}
+
+.right-div {
+    display: flex;
+    align-items: center;
+
+    i {
+        font-size: 1.3rem;
+        padding: 0 0.8rem;
+    }
 }
 
 .search-form {

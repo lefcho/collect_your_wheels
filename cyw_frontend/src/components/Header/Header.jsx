@@ -41,11 +41,13 @@ function Header() {
 
     return (
         <header className={styles.header}>
-            <Link to="/">
-                <div>
+            <div className={styles['right-div']}>
+                <i className="fa-solid fa-bars"></i>
+                <Link to="/">
                     <img className={styles.logo} src={logo} alt="Logo" />
-                </div>
-            </Link>
+                </Link>
+            </div>
+
             <form className={styles['search-form']} onSubmit={handleSearchSubmit}>
                 <input
                     className={styles['search-input']}
@@ -77,31 +79,31 @@ function Header() {
                             <i className="fa-solid fa-user"></i>
                         </button>
                         <AnimatePresence>
-                        {showProfCont && (
-                            <motion.div
-                            className={styles['prof-info-cont']}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <Link className={styles['icon-text']} to="/collected">
-                                <i className="fa-solid fa-car"></i>
-                                <button>Collected Cars</button>
-                            </Link>
-                            <Link className={styles['icon-text']} to="/wishlisted">
-                                <i className="fa-solid fa-car-on"></i>
-                                <button>Wishlisted Cars</button>
-                            </Link>
-                            <button
-                                className={`${styles['icon-text']} ${styles['add-before']}`}
-                                onClick={handleLogout}
-                            >
-                                <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                                <p>Logout</p>
-                            </button>
-                            </motion.div>
-                        )}
+                            {showProfCont && (
+                                <motion.div
+                                    className={styles['prof-info-cont']}
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <Link className={styles['icon-text']} to="/collected">
+                                        <i className="fa-solid fa-car"></i>
+                                        <button>Collected Cars</button>
+                                    </Link>
+                                    <Link className={styles['icon-text']} to="/wishlisted">
+                                        <i className="fa-solid fa-car-on"></i>
+                                        <button>Wishlisted Cars</button>
+                                    </Link>
+                                    <button
+                                        className={`${styles['icon-text']} ${styles['add-before']}`}
+                                        onClick={handleLogout}
+                                    >
+                                        <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                                        <p>Logout</p>
+                                    </button>
+                                </motion.div>
+                            )}
                         </AnimatePresence>
                     </div>
                 ) : (
