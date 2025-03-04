@@ -63,7 +63,7 @@ function CarSeries() {
     if (!series) return null;
 
     return (
-        <div className={styles['car-series-cont']}>
+        <div className={`${styles['car-series-cont']} main-cont`}>
             <div className={styles['series-heading']}>
                 <div>
                     <h1>{series.title}</h1>

@@ -62,7 +62,7 @@ function CollectedCars() {
     
 
     return (
-        <div>
+        <div className='main-cont'>
             <div className={styles.head}>
                 <h1 className={styles.title}>Your Car <span>Collection</span></h1>
                 <form className={styles['car-form']}>

@@ -53,7 +53,7 @@ function WishlistedCars() {
     };
 
     return (
-        <div>
+        <div className='main-cont'>
             <div className={styles.head}>
                 <h1 className={styles.title}>Your Wishlisted <span>Cars</span></h1>
                 <form className={styles['car-form']}>
