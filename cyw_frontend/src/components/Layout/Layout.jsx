@@ -18,15 +18,14 @@ function Layout() {
     return (
         <div className={styles.layout}>
             <Header toggleSidebar={toggleSidebar} />
-            <div className={styles.contentContainer}>
-                {isSidebarOpen && 
-                    <Sidebar
-                        toggleSidebar={toggleSidebar} 
-                    />}
-                <main className={styles.main}>
-                    <Outlet />
-                </main>
-            </div>
+            {isSidebarOpen &&
+                <Sidebar
+                    toggleSidebar={toggleSidebar}
+                />}
+            <main className={styles.main}>
+                <Outlet />
+            </main>
+
             <Footer />
         </div>
     );
