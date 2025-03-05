@@ -1,7 +1,9 @@
 @use '../../styles/variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 
 .sidebar {
+    padding: 1rem;
     position: absolute;
     left: 0;
     right: 0;
@@ -9,4 +11,18 @@
     width: 260px;
     height: 100vh;
     background-color: v.$color-primary;
+}
+
+.header {
+    font-family: "Josefin Sans", serif;
+    color: v.$color-secondary;
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid v.$color-secondary;
+}
+
+.cancelBtn {
+    font-size: 1.5rem;
 }
