@@ -9,7 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import CollectedCars from './pages/CollectedCars/CollectedCars';
 import WishlistedCars from './pages/WishlistedCars/WishlistedCars';
 import Search from './pages/Search/Search';
-import Layout from './components/Layout';
+import Layout from './components/Layout/Layout.jsx';
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import CarSeries from './pages/CarSeries/CarSeries.jsx';
 

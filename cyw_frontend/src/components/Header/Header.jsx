@@ -8,9 +8,12 @@ import logo from '../../assets/logo.svg';
 import styles from './Header.module.scss';
 
 
-function Header() {
+function Header(props) {
+
+    const { toggleSidebar } = props;
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const [query, setQuery] = useState('');
     const [showProfCont, setShowProfCont] = useState(false);
 
@@ -42,7 +45,12 @@ function Header() {
     return (
         <header className={styles.header}>
             <div className={styles['right-div']}>
-                <i className="fa-solid fa-bars"></i>
+                <button 
+                    onClick={toggleSidebar} 
+                    className={styles['sidebar-toggle']}
+                >
+                    <i className="fa-solid fa-bars"></i>
+                </button>
                 <Link to="/">
                     <img className={styles.logo} src={logo} alt="Logo" />
                 </Link>
