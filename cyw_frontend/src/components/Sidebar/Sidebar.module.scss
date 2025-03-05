@@ -11,6 +11,9 @@
     width: 260px;
     height: 100vh;
     background-color: v.$color-primary;
+    -webkit-box-shadow: 4px 3px 10px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 4px 3px 10px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 3px 10px 1px rgba(0, 0, 0, 0.5);
 }
 
 .header {
@@ -18,11 +21,18 @@
     color: v.$color-secondary;
     align-items: center;
     display: flex;
-    gap: 1rem;
-    padding-bottom: 1rem;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid v.$color-secondary;
 }
 
 .cancelBtn {
-    font-size: 1.5rem;
+    color: v.$color-tertiary;
+    padding: 0.5rem;
+    font-size: 2rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        color: v.$color-accent;
+    }
 }

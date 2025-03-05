@@ -235,3 +235,15 @@
         z-index: 1000;
     }
 }
+
+.sidebar-toggle {
+    i {
+        font-size: 1.8rem;
+        color: v.$color-tertiary;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            color: v.$color-accent;
+        }
+    }
+}
