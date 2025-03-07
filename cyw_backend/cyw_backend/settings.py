@@ -71,7 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cyw_backend.wsgi.application'
 
-# text new branch
+# Text new branch
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
