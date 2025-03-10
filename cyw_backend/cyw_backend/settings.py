@@ -36,15 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'rest_framework',
-    'rest_framework.authtoken',
+
     'corsheaders',
     'django_filters',
-
-     'allauth',
-     'allauth.account',
-     'allauth.socialaccount',
-     'dj_rest_auth.registration',
-
 ] + MY_APPS
 
 MIDDLEWARE = [
@@ -169,3 +163,4 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
+PASSWORD_RESET_TIMEOUT = 14400
