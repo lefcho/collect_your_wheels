@@ -31,7 +31,7 @@ function LoginForm() {
         setLoading(true);
 
         try {
-            const response = await api.post('api/token/', {
+            const response = await api.post('auth/jwt/create/', {
                 username: formData.username,
                 password: formData.password,
             });

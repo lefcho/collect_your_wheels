@@ -12,7 +12,7 @@ const refreshToken = async () => {
     const refresh_token = localStorage.getItem(REFRESH_TOKEN);
 
     try {
-        const response = await refreshApi.post("api/token/refresh/", {
+        const response = await refreshApi.post("auth/jwt/refresh/", {
             refresh: refresh_token,
         });
 

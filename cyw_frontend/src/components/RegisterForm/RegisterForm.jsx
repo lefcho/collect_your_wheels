@@ -34,7 +34,7 @@ function RegisterForm() {
         }
 
         try {
-            await api.post('api/user/register/', {
+            await api.post('auth/users/', {
                 username: formData.username,
                 email: formData.email,
                 password: formData.password,
