@@ -8,3 +8,5 @@ export const searchSeriesUrl = '/api/search-series/';
 export const regsiterUrl = '/auth/users/';
 export const loginUrl = '/auth/jwt/create/';
 export const refreshUrl = '/auth/jwt/refresh/';
+export const activateUrl = '/auth/users/activation/';
+

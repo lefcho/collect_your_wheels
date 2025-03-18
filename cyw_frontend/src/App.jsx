@@ -12,6 +12,7 @@ import Search from './pages/Search/Search';
 import Layout from './components/Layout/Layout.jsx';
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import CarSeries from './pages/CarSeries/CarSeries.jsx';
+import ActivateAccount from './pages/ActivateAccount/ActivateAccount.jsx';
 
 
 function RegisterAndLogout() {
@@ -25,12 +26,13 @@ function App() {
         <BrowserRouter>
             <AuthProvider>
                 <Routes>
+                    <Route path="/activate/:uid/:token" element={<ActivateAccount />} />
                     <Route path="/" element={<Layout />}>
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<RegisterAndLogout />} />
                         <Route path='/results' element={<Search />} />
-                        <Route path='/series/:slug' element={<CarSeries />}/>
+                        <Route path='/series/:slug' element={<CarSeries />} />
                         <Route path='/collected' element={
                             <ProtectedRoute>
                                 <CollectedCars />
