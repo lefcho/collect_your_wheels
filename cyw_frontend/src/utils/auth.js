@@ -1,7 +1,6 @@
 
 import { jwtDecode } from 'jwt-decode';
 import { ACCESS_TOKEN } from '../constants.js';
-import { REFRESH_TOKEN } from '../constants.js';
 
 export function checkAuth() {  
     const token = localStorage.getItem(ACCESS_TOKEN);

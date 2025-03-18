@@ -1,6 +1,6 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
+import { ACCESS_TOKEN, REFRESH_TOKEN, refreshUrl } from "./constants";
 
 
 const refreshApi = axios.create({
@@ -12,7 +12,7 @@ const refreshToken = async () => {
     const refresh_token = localStorage.getItem(REFRESH_TOKEN);
 
     try {
-        const response = await refreshApi.post("auth/jwt/refresh/", {
+        const response = await refreshApi.post(refreshUrl, {
             refresh: refresh_token,
         });
 

@@ -4,6 +4,7 @@ import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';
+import { regsiterUrl } from '../../constants';
 
 
 function RegisterForm() {
@@ -34,7 +35,7 @@ function RegisterForm() {
         }
 
         try {
-            await api.post('auth/users/', {
+            await api.post(regsiterUrl, {
                 username: formData.username,
                 email: formData.email,
                 password: formData.password,

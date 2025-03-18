@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../PasswordInput/PasswordInput';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants';
+import { ACCESS_TOKEN, loginUrl, REFRESH_TOKEN } from '../../constants';
 import { AuthContext } from '../../contexts/AuthContext';
 import styles from './LoginForm.module.scss';
 
@@ -31,7 +31,7 @@ function LoginForm() {
         setLoading(true);
 
         try {
-            const response = await api.post('auth/jwt/create/', {
+            const response = await api.post(loginUrl, {
                 username: formData.username,
                 password: formData.password,
             });
