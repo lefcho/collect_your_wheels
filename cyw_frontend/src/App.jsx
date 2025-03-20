@@ -13,6 +13,8 @@ import Layout from './components/Layout/Layout.jsx';
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import CarSeries from './pages/CarSeries/CarSeries.jsx';
 import ActivateAccount from './pages/ActivateAccount/ActivateAccount.jsx';
+import Unactivated from './pages/Unactivated/Unactivated.jsx';
+
 
 
 function RegisterAndLogout() {
@@ -26,6 +28,7 @@ function App() {
         <BrowserRouter>
             <AuthProvider>
                 <Routes>
+                    <Route path="/unactivted/" element={<Unactivated/>} />
                     <Route path="/activate/:uid/:token" element={<ActivateAccount />} />
                     <Route path="/" element={<Layout />}>
                         <Route path='/' element={<Home />} />
